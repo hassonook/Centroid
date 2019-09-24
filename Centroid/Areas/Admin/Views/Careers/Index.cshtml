@@ -1,0 +1,48 @@
+﻿@model Centroid.Models.Career
+<!-- section start -->
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="side-menu">
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Careers")">Home</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Jobs")">Vacancies</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Profiles")">Profiles</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "JobApplications")">Applications</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        @if (Model != null)
+                        {
+                            @Html.ActionLink("Modify the Text", "Edit", new { id = Model.Id})
+                            @Html.Raw(Server.HtmlDecode(Model.CareerMsg))
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Add Text To Career Page", "Create")
+                        }
+                        @*<h2>GRADUATES DEVELOPMENT PROGRAM</h2>
+                            <p>One of the main objectives behind the establishment of CTS was to develop the Sudanese national capabilities in the field of the PMC services for the petroleum industry in Sudan. Most of our current staff joined the company as on-job trainees; and through-out their exposure within the company’s projects, they shaped and developed a strong experience with which the company has successfully increased the ratio of the Sudanese national workforce from the company’s total manpower.</p>
+                            <h3>Training opportunities:</h3>
+                            <p>CTS provides training opportunities for fresh graduates in different disciplines. The following training positions were offered for 2016 intake which was closed on May 19th, 2016:</p>
+                            <h4>1.Trainee, Process Engineering</h4>
+                            <p>As a process engineering trainee, you will learn how to check and review the engineering deliverables and documentation from General Engineering Services (GES) contractors according to the international standards and codes. You will also learn how to use process simulation software to cross check the design and calculation deliverables as well as investigating and troubleshooting process problems.</p>
+                            <h4>2.Trainee, Civil Engineering</h4>
+                            <p>As a Civil Engineering trainee, you will learn how to inspect the execution of civil activities of the EPCC contractors at site. Civil inspection activities includes, but not limited to, inspection of materials at site before acceptance for installation; ensuring the compliance of the EPCC contractors with the construction quality control plans and procedures and to report on Non-Conformities; checking the completeness of documents and the overall compliance of drawing & documents with the contract’s specifications and codes.</p>
+                            <h4>3.Trainee, Quality Assurance /Quality Control (QA/QC)</h4>
+                            <p>As a QA/QC trainee, you will learn how to properly implement a quality management system and the overall QA/QC surveillance program for the on-going EPCC projects at site. The QA/QC activities includes, but not limited to, coordinating the efficient implementation of all quality procedures; compilation of all Non-Conformity Reports (NCRs) highlighted by the discipline inspectors; special review for the welding activities; ensuring the completeness of the on-going projects’ documentation for close-out reports and the overall overseeing of the project’s quality performance.</p>
+                            <h4>4.Trainee, Health, Safety & Environment (HSE)</h4>
+                            <p>As HSE trainee, you will learn how to implement a sound safety program for all the aspects of the on-going EPCC projects at site. The HSE activities include, but not limited to, ensuring a complete compliance of the EPCC contractors with HSE requirements and polices; investigating and reporting on incidents, injuries, hazards and any unsafe acts at site; ensure proper implementation of agreed upon control measures and corrective action when unsafe acts are observed; reviewing the EPCC contractors information about health & safety of their site staff; ensure that all contractors employees at site are working safely and in line with the site HSE plan; record and analyze the HSE performance statistics and prepare periodic reports and assist in managing environmental issues related to the projects activities at site.</p>
+                            <h4>5.Trainee, Contract Administration</h4>
+                            <p>As Contract Administration trainee, you will learn how to manage the technical and contractual aspects of the EPCC contracts during pre-awards and post-awards stages of the service contracts. The contract administration activities includes, but not limited to, pre-award activities such as preparation of Invitation to Bidder (ITB) documents; evaluation of submitted technical and commercial proposals; responding to bidders’ inquiries; negotiation with selected bidders, and preparation of contract documents and award formalities. Post-award activities include the kick-off meeting; issuing work/service orders and Final Quality Measurements; processing milestone certificates, completion certificates, provisional and final acceptance certificates; evaluation and preparation of change orders; reviewing submitted invoices and monthly cost reports.</p>
+                            <h4>6.Trainee, Procurement</h4>
+                            <p>As a procurement trainee, you will learn how to manage the overall procurement activities of the EPCC contractors. The overall procurement activities includes, but not limited to, establishing procurement scope of work during ITB preparation & evaluate the EPCC procurement policies during bidding stage; verifying EPCC contractor’s invoices against procurement progress and actual delivery of material and equipment at site; monitoring the submission of procumbent reports by the EPCC contracts (Purchase Order progress, Materials Delivery status, Material/Stock status Report, Third Party Inspection Reports, Vendor Final Documentation, etc.).</p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

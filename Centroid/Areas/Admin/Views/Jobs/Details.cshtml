@@ -1,0 +1,38 @@
+﻿@model Centroid.Models.Job
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.JobTitle)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JobTitle)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JobDetails)
+                </dt>
+
+                <dd>
+                    @Html.Raw(Server.HtmlDecode(Model.JobDetails))
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.JobType)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.JobType)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</section>

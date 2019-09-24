@@ -13,6 +13,7 @@ namespace Centroid.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+    using System.Web.Mvc;
 
     [MetadataType(typeof(ProjectMetadata))]
     public partial class Project
@@ -28,25 +29,26 @@ namespace Centroid.Models
         [Required]
         [Display(Name = "Start Date")]
         [DataType(DataType.Date)]
-        public string StartDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime StartDate { get; set; }
 
         [Required]
         [Display(Name = "End Date")]
         [DataType(DataType.Date)]
-        public string EndDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime EndDate { get; set; }
         [Required]
         [Display(Name = "Client")]
         [DataType(DataType.Text)]
         public string Client { get; set; }
-        [Required]
         [Display(Name = "Client Logo")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase ClientLogo { get; set; }
-        [Required]
         [Display(Name = "Project Image")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase Image { get; set; }
         [Required]
+        [AllowHtml]
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

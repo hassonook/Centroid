@@ -12,6 +12,8 @@ namespace Centroid.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
+    using System.Web.Mvc;
 
     [MetadataType(typeof(QHSEMetadata))]
     public partial class QHSE
@@ -21,26 +23,34 @@ namespace Centroid.Models
     {
         public int Id { get; set; }
         [Required]
+        [AllowHtml]
         [Display(Name = "Vision")]
         [DataType(DataType.MultilineText)]
         public string Vision { get; set; }
         [Required]
+        [AllowHtml]
         [Display(Name = "Mission")]
         [DataType(DataType.MultilineText)]
         public string Mission { get; set; }
         [Required]
+        [AllowHtml]
         [Display(Name = "Policy")]
         [DataType(DataType.MultilineText)]
         public string QhsePolicy { get; set; }
         [Required]
+        [AllowHtml]
         [Display(Name = "Arabic Policy")]
         [DataType(DataType.MultilineText)]
         public string QhsePolicyAr { get; set; }
+        [Display(Name = "IMS"), DataType(DataType.Upload)]
+        public HttpPostedFileBase QhseIMS { get; set; }
         [Required]
-        [Display(Name = "IMS")]
+        [AllowHtml]
+        [Display(Name = "HSE")]
         [DataType(DataType.MultilineText)]
-        public string QhseIMS { get; set; }
-
+        public string Hse { get; set; }
+        [Display(Name = "ISO Certificates"), DataType(DataType.Upload)]
+        public HttpPostedFileBase[] IsoCertificates { get; set; }
     }
 }
 

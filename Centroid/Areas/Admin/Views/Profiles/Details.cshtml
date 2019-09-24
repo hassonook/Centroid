@@ -1,0 +1,212 @@
+﻿@model Centroid.Models.PersonalInfo
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <div>
+            @foreach (var item in Model.Documents)
+            {
+                if (item.DocType == "Photo")
+                {
+                    <img src="@item.Document" />
+                }
+            }
+            <h4><u>Personal Info:</u></h4>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.DateOfBirth)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DateOfBirth)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nationality)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nationality)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone1)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Phone1)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone2)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Phone2)
+                </dd>
+            </dl>
+            <h4><u>Education:</u></h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().EducationalInstitution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().Discipline)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().EducationLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().Highest)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Educations)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EducationalInstitution)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discipline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EducationLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Highest)
+                        </td>
+                    </tr>
+                }
+            </table>
+            <h4><u>Work Experiences:</u></h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().Employer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().JobTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().EndDate)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.WorkExperiences)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <h4><u>Attach Documents:</u></h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Documents.Single().Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Documents.Single().DocType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Documents.Single().Document)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.Documents)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DocType)
+                        </td>
+                        <td>
+                            <span class="fa fa-file-archive-o"></span>
+                            <a href="@Url.Content(item.Document)">Preview</a>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            if (ViewBag.JobId != null)
+            {
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.Hidden("JobId", (int?)ViewBag.JobId)
+                    @Html.Hidden("ProfileId", (int)ViewBag.ProfileId)
+                    @Html.Hidden("ApplyDate", System.DateTime.Now)
+                    <div class="form-group">
+                        <div class="col-md-2 btn btn-secondary">
+                            @Html.ActionLink("Cancel", "Job", "Careers", new { jobId = ViewBag.JobId, ProfileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-secondary" })
+                        </div>
+                        <div class="col-md-5">
+                            <input type="submit" value="Apply" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                @Html.ActionLink("Back to List", "Index", "Profiles")
+            }
+        }
+    </div>
+</section>

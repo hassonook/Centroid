@@ -1,51 +1,112 @@
 ﻿@model IEnumerable<Centroid.Models.Home>
+<!-- banner start -->
+<div id="banner" class="banner">
+    <div class="banner-overlay"></div>
+    <div class="slider-banner" style="width:1900px; height:750px">
+        @foreach (var item in Model)
+        {
+            <div style="width:1900px; height:750px" data-lazy-background="@Url.Content(item.Image)">
+                <div class="banner-caption">
+                    <h3>@Html.Raw(Server.HtmlDecode(item.Name))</h3>
+                    <p>@Html.Raw(Server.HtmlDecode(item.Description))</p>
+                </div>
+            </div>
+        }
+    </div>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+</div>
+<!-- banner end -->
+<section class="hero-caption secPadding">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th></th>
-    </tr>
+    <div class="container">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        <div class="row home" style="margin-top: 0px;">
+            <div class="col-sm-8 home">
+                @Html.Raw(Server.HtmlDecode(ViewBag.AboutUs.Substring(ViewBag.AboutUs.IndexOf("<p"))))
+            </div>
+            <div class="col-sm-4 vision">
+                    <h2>Our VISION</h2>
+                    <div class="vision-text">
+                        @Html.Raw(Server.HtmlDecode(ViewBag.Vision.Substring(ViewBag.Vision.IndexOf("<p"))))
+                    </div>
+            </div>
+        </div>
 
-</table>
+    </div>
+
+</section>
+
+<!-- section start -->
+<section class="default-bg key-record">
+    <div class="container">
+        <div class="row">
+            <div class='col-md-offset-2 col-md-8 text-center'>
+                <h2><strong>Our Key Records</strong></h2>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-offset-2 col-md-8'>
+                <div class="carousel slide" data-ride="carousel" id="key-carousel">
+                    <!-- Bottom Carousel Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#key-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#key-carousel" data-slide-to="1"></li>
+                        <li data-target="#key-carousel" data-slide-to="2"></li>
+                        <li data-target="#key-carousel" data-slide-to="3"></li>
+                    </ol>
+                    <!-- Carousel Slides / KeyRecords -->
+                    <div class="carousel-inner">
+
+                        <!-- Key 1 -->
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-3 text-center">
+                                    <img class="img-circle" src="~/Content/images/KeyRecords/Leader.jpg" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-9 item-text">
+                                    <p>Centroid PMC Market Leader for Oil & Gas Industry in Sudan</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Key 2 -->
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <img class="img-circle" src="~/Content/images/KeyRecords/Projects.png" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-9 item-text">
+                                    <p>Over 4 billion USD managed projects</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Key 3 -->
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <img class="img-circle" src="~/Content/images/KeyRecords/ISO.jpg" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-9 item-text">
+                                    <p>ISO Certified Company</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Key 4 -->
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-sm-3 text-center">
+                                    <img class="img-circle" src="~/Content/images/KeyRecords/Safety.jpg" style="width: 100px;height:100px;">
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-xs-9 item-text">
+                                    <p>Over 37 million safe man-hours without lost time injuries</p>
+                                    <small><i>Accumulated hours since July 2007</i></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Centroid.Models.QHSE>
+<!-- section start -->
+<section class="section clearfix no-view secPadding aboutus" data-animation-effect="fadeIn">
+    <div class="container">
+        @if (Model == null)
+        {
+            @Html.ActionLink("Add QHSE Details", "Create")
+        }
+        else
+        {
+            @Html.ActionLink("Change QHSE Details", "Edit", new { id = Model.FirstOrDefault().Id})
+        }
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <!-- Bottom Carousel Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#quote-carousel" data-slide-to="1"></li>
+                                <li data-target="#quote-carousel" data-slide-to="2"></li>
+                            </ol>
+                            <!-- Carousel Slides / Quotes -->
+                            <div class="carousel-inner">
+                                @{
+                                    var collections = Directory.GetFiles(Server.MapPath(Model.FirstOrDefault().IsoCertificates));
+                                }
+                                @foreach (var file in collections)
+                                {
+                                    var className = "item";
+                                    if (file == collections[0])
+                                    {
+                                        className = "item active";
+                                    }
+                                    var fileName = Path.GetFileName(file);
+                                    var imagePath = Model.FirstOrDefault().IsoCertificates + "/" + fileName;
+                                    <div class="@className">
+                                        <img src="@Url.Content(imagePath)" alt="">
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="vision qhse col-md-12 col-sm-12 col-xs-12">
+                            <h2>Our QHSE VISION</h2>
+                            @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().Vision.Substring(Model.FirstOrDefault().Vision.IndexOf("<p"))))
+
+                            @*<div class="vision-title col-md-5 col-sm-5 col-xs-5">
+                            </div>*@
+                            @*<div class="vision-text col-md-5  col-sm-5 col-xs-5 col-md-offset-2 text-center circle">
+
+                            </div>*@
+                        </div>
+                        <div class="mission col-md-12 col-sm-12 col-xs-12">
+                            <h2>Our QHSE Mission</h2>
+                            @{
+
+                                var mission = Model.FirstOrDefault().Mission.Substring(Model.FirstOrDefault().Mission.IndexOf("<li"));
+                                mission = mission.Replace("</li>\r\n<li>", ";").Replace("<li>", "").Replace("</li>\r\n</ul>", "");
+                                var missionList = mission.Split(';');
+                            }
+                            <ul class="list-unstyled">
+                                @foreach (var item in missionList)
+                                {
+                                    <li><i class="fa fa-arrow-circle-right pr-10 colored"></i>@item</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div id="exTab3" class="container">
+                        <ul class="nav nav-pills">
+                            <li class="active">
+                                <a href="#1b" data-toggle="tab">HSE</a>
+                            </li>
+                            <li>
+                                <a href="#2b" data-toggle="tab">QHSE POLICY</a>
+                            </li>
+                            <li>
+                                <a href="#3b" data-toggle="tab">سياسة الجودة والصحة و السلامة والبيئة</a>
+                            </li>
+                            <li>
+                                <a href="#4b" data-toggle="tab">IMS</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="1b">
+                                @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().Hse.Substring(Model.FirstOrDefault().Hse.IndexOf("<p"))))
+                            </div>
+                            <div class="tab-pane" id="2b">
+                                @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().QhsePolicy.Substring(Model.FirstOrDefault().QhsePolicy.IndexOf("<p"))))
+                            </div>
+                            <div class="tab-pane" id="3b">
+                                @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().QhsePolicyAr.Substring(Model.FirstOrDefault().QhsePolicyAr.IndexOf("<p"))))
+                            </div>
+                            <div class="tab-pane" id="4b">
+                                <a href="@Url.Content(Model.FirstOrDefault().QhseIMS)">Integrated Management System</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->
+
+@section Scripts {
+    <script type="text/javascript">
+        function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Read more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Read less";
+                moreText.style.display = "inline";
+            }
+        }
+    </script>
+}

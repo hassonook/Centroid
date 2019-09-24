@@ -20,7 +20,6 @@ namespace Centroid.Models
     public class PersonalInfoMetadata
     {
         public int Id { get; set; }
-        [Required]
         [Display(Name = "Full Name")]
         [DataType(DataType.Text)]
         public string FullName { get; set; }
@@ -29,14 +28,15 @@ namespace Centroid.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
+        [Display(Name = "Password")]
+        [DataType(DataType.EmailAddress)]
+        public string Password { get; set; }
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
         public string DateOfBirth { get; set; }
-        [Required]
         [Display(Name = "Nationality")]
         [DataType(DataType.Text)]
         public string Nationality { get; set; }
-        [Required]
         [Display(Name = "Mobile No.")]
         [DataType(DataType.Text)]
         public string Phone1 { get; set; }
@@ -44,7 +44,7 @@ namespace Centroid.Models
         [Display(Name = "Mobile No(Optional)")]
         [DataType(DataType.Text)]
         public string Phone2 { get; set; }
-        [Required, Display(Name = "Gender")]
+        [Display(Name = "Gender")]
         [DataType(DataType.Text)]
         public string Gender { get; set; }
 

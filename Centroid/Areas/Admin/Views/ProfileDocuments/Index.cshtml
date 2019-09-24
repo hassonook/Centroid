@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Centroid.Models.ProfileDocument>
+
+@{
+    ViewBag.Title = "Education";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <p>
+            @Html.ActionLink("Create New", "Create", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId})
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DocType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Document)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocType)
+            </td>
+            <td>
+                <span class="fa fa-file-archive-o"></span>
+                <a href="@Url.Content(item.Document)">Preview</a>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id, jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id, jobId = ViewBag.JobId, profileId = ViewBag.ProfileId })
+            </td>
+        </tr>
+            }
+
+        </table>
+        <p>
+            @Html.ActionLink("Back", "Index", "WorkExperiences", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Exit", "Job", "Careers", null, htmlAttributes: new { @class = "btn btn-danger" })
+            @Html.ActionLink("Continue", "Apply", "Careers", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</section>

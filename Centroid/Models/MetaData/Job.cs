@@ -13,6 +13,7 @@ namespace Centroid.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+    using System.Web.Mvc;
 
     [MetadataType(typeof(JobMetadata))]
     public partial class Job
@@ -26,12 +27,13 @@ namespace Centroid.Models
         [DataType(DataType.Text)]
         public string JobTitle { get; set; }
         [Required]
+        [AllowHtml]
         [Display(Name = "Job Details")]
-        [DataType(DataType.Upload)]
+        [DataType(DataType.MultilineText)]
         public HttpPostedFileBase JobDetails { get; set; }
         [Required]
         [Display(Name = "Job Type")]
-        public int JobTypeId { get; set; }
+        public string JobType { get; set; }
 
     }
 }

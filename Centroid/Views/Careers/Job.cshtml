@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Centroid.Models.Job>
+<!-- section start -->
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="side-menu">
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Careers")">Home</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Job", "Careers")">Vacancies</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Profiles")">My Profile</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.JobTitle)</th>
+                                    <th>@Html.DisplayNameFor(model => model.JobType)</th>
+                                    <th>@Html.DisplayNameFor(model => model.JobDetails)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.JobTitle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.JobType)
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="anchorDetail" data-toggle="modal" data-target="#detailsModal" data-id="@item.Id" data-details="@Server.HtmlDecode(item.JobDetails)">Details</a>
+                                    <td>
+                                        @Html.ActionLink("Apply", "Index", "Profiles", new { jobId = item.Id }, null)
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="detailseModalLabel">Job Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <div class="btn btn-primary">
+                                        @Html.ActionLink("Apply", "StartApply")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->
+@section scripts
+{
+    <script>
+        $('#detailsModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var jobId = button.data('id'); // Extract info from data-* attributes
+            var details = button.data('details'); // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this);
+            modal.find('.modal-body').html(details);
+            modal.find('.modal-footer a').attr('href', '/Profiles?jobId=' + jobId);
+        });
+    </script>
+
+}  

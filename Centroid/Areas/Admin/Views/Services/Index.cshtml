@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Centroid.Models.Service>
+@{
+    var item = Model.FirstOrDefault();
+}
+
+<!-- section start -->
+<section class="section pclear secPadding">
+    <div class="container">
+        @if (item == null)
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+        else
+        {
+            @Html.ActionLink("Change Services Info", "Edit", new { id = item.Id })
+        }
+        <h1 id="services" class="title text-center">Our Services</h1>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Raw(Server.HtmlDecode(item.ServiceHead))
+            </div>
+        </div>
+        <div class="space"></div>
+        <p>
+            @Html.ActionLink("Add new Service", "Create", "ServiceDetails")
+        </p>
+        <div class="row">
+            @foreach (var service in item.ServiceDetails)
+            {
+                <div class="col-md-4">
+                    <div class="media block-list">
+                        <div class="media-left">
+                            <img width="50" height="50" src="@Url.Content(service.Image)" />
+                        </div>
+                        <div class="media-body">
+                            @Html.ActionLink("Edit", "Edit", "ServiceDetails", new { id = service.Id }, null)|
+                            @Html.ActionLink("Delete", "Delete", "ServiceDetails", new { id = service.Id }, null)
+                            @Html.Raw(Server.HtmlDecode(service.Description))
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div class="space"></div>
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Raw(Server.HtmlDecode(item.ServiceFoot))
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

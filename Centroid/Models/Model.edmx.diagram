@@ -7,19 +7,14 @@
       <Diagram DiagramId="a97c27d4927547d297fe53251c9df630" Name="Diagram1" ZoomLevel="82" >
         <EntityTypeShape EntityType="Model.Home" Width="1.5" PointX="12.625" PointY="2.875" />
         <EntityTypeShape EntityType="Model.About" Width="1.5" PointX="10.625" PointY="6" />
-        <EntityTypeShape EntityType="Model.Project" Width="1.5" PointX="10.625" PointY="3.25" />
-        <EntityTypeShape EntityType="Model.Service" Width="1.5" PointX="12.625" PointY="5.125" />
+        <EntityTypeShape EntityType="Model.Project" Width="1.5" PointX="10.625" PointY="3.375" />
+        <EntityTypeShape EntityType="Model.ServiceDetails" Width="1.5" PointX="8.875" PointY="8.375" />
         <EntityTypeShape EntityType="Model.QHSE" Width="1.5" PointX="10.625" PointY="0.625" />
         <EntityTypeShape EntityType="Model.PersonalInfo" Width="1.5" PointX="4.875" PointY="0.5" />
         <EntityTypeShape EntityType="Model.Job" Width="1.5" PointX="2.5" PointY="3.125" />
         <EntityTypeShape EntityType="Model.ProfileDocument" Width="1.5" PointX="2.5" PointY="0.5" />
-        <EntityTypeShape EntityType="Model.DocType" Width="1.5" PointX="0.5" PointY="0.5" />
-        <AssociationConnector Association="Model.DocumentDocType" />
         <AssociationConnector Association="Model.DocumentProfile" />
         <EntityTypeShape EntityType="Model.ContactUs" Width="1.5" PointX="8.625" PointY="4.5" />
-        <EntityTypeShape EntityType="Model.JobType" Width="1.5" PointX="0.5" PointY="2.625" />
-        <EntityTypeShape EntityType="Model.IsoCertificate" Width="1.5" PointX="12.625" PointY="0.5" />
-        <AssociationConnector Association="Model.QHSEIsoCertificate" />
         <EntityTypeShape EntityType="Model.JobApplication" Width="1.5" PointX="4.375" PointY="4.25" />
         <AssociationConnector Association="Model.JobApplicationProfile" />
         <AssociationConnector Association="Model.JobApplicationJob" />
@@ -30,16 +25,14 @@
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="10.5" />
         <AssociationConnector Association="Model.AspNetUserRoles" />
-        <AssociationConnector Association="Model.JobJobType" />
         <EntityTypeShape EntityType="Model.Qualification" Width="1.5" PointX="6.75" PointY="2.625" />
         <EntityTypeShape EntityType="Model.Education" Width="1.5" PointX="6.75" PointY="0.5" />
         <EntityTypeShape EntityType="Model.WorkExperience" Width="1.5" PointX="6.5" PointY="4.625" />
         <AssociationConnector Association="Model.WorkExperiencePersonalInfo" />
         <AssociationConnector Association="Model.PersonalInfoEducation" />
-        <EntityTypeShape EntityType="Model.EducationLevel" Width="1.5" PointX="8.625" PointY="0.625" />
-        <AssociationConnector Association="Model.EducationLevelEducation" />
-        <EntityTypeShape EntityType="Model.Country" Width="1.5" PointX="8.625" PointY="2.375" />
-        <AssociationConnector Association="Model.CountryEducation" />
+        <EntityTypeShape EntityType="Model.Service" Width="1.5" PointX="12.625" PointY="8" />
+        <AssociationConnector Association="Model.ServiceServiceDetails" />
+        <EntityTypeShape EntityType="Model.Career" Width="1.5" PointX="13" PointY="5.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

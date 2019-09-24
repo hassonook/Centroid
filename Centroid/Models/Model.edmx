@@ -9,15 +9,12 @@
     <EntitySet Name="Homes" EntityType="Model.Store.Homes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Abouts" EntityType="Model.Store.Abouts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Projects" EntityType="Model.Store.Projects" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Services" EntityType="Model.Store.Services" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ServiceDetails" EntityType="Model.Store.ServiceDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="QHSEs" EntityType="Model.Store.QHSEs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PersonalInfoes" EntityType="Model.Store.PersonalInfoes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Jobs" EntityType="Model.Store.Jobs" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProfileDocuments" EntityType="Model.Store.ProfileDocuments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DocTypes" EntityType="Model.Store.DocTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ContactUs" EntityType="Model.Store.ContactUs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="JobTypes" EntityType="Model.Store.JobTypes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="IsoCertificates" EntityType="Model.Store.IsoCertificates" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="JobApplications" EntityType="Model.Store.JobApplications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserClaims" EntityType="Model.Store.AspNetUserClaims" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserLogins" EntityType="Model.Store.AspNetUserLogins" store:Type="Tables" Schema="dbo" />
@@ -25,20 +22,12 @@
     <EntitySet Name="AspNetRoles" EntityType="Model.Store.AspNetRoles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Educations" EntityType="Model.Store.Educations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkExperiences" EntityType="Model.Store.WorkExperiences" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="EducationLevels" EntityType="Model.Store.EducationLevels" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Countries" EntityType="Model.Store.Countries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Services" EntityType="Model.Store.Services" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Careers" EntityType="Model.Store.Careers" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserRoles" EntityType="Model.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="DocumentDocType" Association="Model.Store.DocumentDocType">
-      <End Role="Document" EntitySet="ProfileDocuments" />
-      <End Role="DocType" EntitySet="DocTypes" />
-    </AssociationSet>
     <AssociationSet Name="DocumentProfile" Association="Model.Store.DocumentProfile">
       <End Role="Document" EntitySet="ProfileDocuments" />
       <End Role="Profile" EntitySet="PersonalInfoes" />
-    </AssociationSet>
-    <AssociationSet Name="QHSEIsoCertificate" Association="Model.Store.QHSEIsoCertificate">
-      <End Role="QHSE" EntitySet="QHSEs" />
-      <End Role="IsoCertificate" EntitySet="IsoCertificates" />
     </AssociationSet>
     <AssociationSet Name="JobApplicationProfile" Association="Model.Store.JobApplicationProfile">
       <End Role="JobApplication" EntitySet="JobApplications" />
@@ -64,10 +53,6 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
     </AssociationSet>
-    <AssociationSet Name="JobJobType" Association="Model.Store.JobJobType">
-      <End Role="Job" EntitySet="Jobs" />
-      <End Role="JobType" EntitySet="JobTypes" />
-    </AssociationSet>
     <AssociationSet Name="WorkExperiencePersonalInfo" Association="Model.Store.WorkExperiencePersonalInfo">
       <End Role="WorkExperience" EntitySet="WorkExperiences" />
       <End Role="PersonalInfo" EntitySet="PersonalInfoes" />
@@ -76,13 +61,9 @@
       <End Role="PersonalInfo" EntitySet="PersonalInfoes" />
       <End Role="Education" EntitySet="Educations" />
     </AssociationSet>
-    <AssociationSet Name="EducationLevelEducation" Association="Model.Store.EducationLevelEducation">
-      <End Role="EducationLevel" EntitySet="EducationLevels" />
-      <End Role="Education" EntitySet="Educations" />
-    </AssociationSet>
-    <AssociationSet Name="CountryEducation" Association="Model.Store.CountryEducation">
-      <End Role="Country" EntitySet="Countries" />
-      <End Role="Education" EntitySet="Educations" />
+    <AssociationSet Name="ServiceServiceDetails" Association="Model.Store.ServiceServiceDetails">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="ServiceDetails" EntitySet="ServiceDetails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Homes">
@@ -120,14 +101,14 @@
     <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="Services">
+  <EntityType Name="ServiceDetails">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Image" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ServiceId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="QHSEs">
     <Key>
@@ -139,19 +120,22 @@
     <Property Name="QhsePolicy" Type="nvarchar(max)" Nullable="false" />
     <Property Name="QhsePolicyAr" Type="nvarchar(max)" Nullable="false" />
     <Property Name="QhseIMS" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hse" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsoCertificates" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PersonalInfoes">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Nationality" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone1" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone2" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfBirth" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Nationality" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phone1" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Phone2" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Gender" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Jobs">
     <Key>
@@ -160,7 +144,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="JobTitle" Type="nvarchar(max)" Nullable="false" />
     <Property Name="JobDetails" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="JobTypeId" Type="int" Nullable="false" />
+    <Property Name="JobType" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ProfileDocuments">
     <Key>
@@ -168,16 +152,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DocPath" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DocTypeId" Type="int" Nullable="false" />
+    <Property Name="Document" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DocType" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ProfileId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="DocTypes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ContactUs">
     <Key>
@@ -193,23 +170,6 @@
     <Property Name="Twitter" Type="nvarchar(max)" Nullable="false" />
     <Property Name="LinkedIn" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" DefaultValue="false" />
-  </EntityType>
-  <EntityType Name="JobTypes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="IsoCertificates">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Document" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="QHSEId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="JobApplications">
     <Key>
@@ -274,8 +234,8 @@
     <Property Name="EndDate" Type="datetime" Nullable="false" />
     <Property Name="Highest" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="PersonalInfoId" Type="int" Nullable="false" />
-    <Property Name="EducationLevelId" Type="int" Nullable="false" />
-    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="EducationLevel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="WorkExperiences">
     <Key>
@@ -288,19 +248,21 @@
     <Property Name="JobTitle" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PersonalInfoId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="EducationLevels">
+  <EntityType Name="Services">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="LevelName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ServiceHead" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ServiceFoot" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="Countries">
+  <EntityType Name="Careers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CareerMsg" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" DefaultValue="true" />
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
@@ -310,18 +272,6 @@
     <Property Name="AspNetRoles_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="AspNetUsers_Id" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
-  <Association Name="DocumentDocType">
-    <End Role="Document" Type="Model.Store.ProfileDocuments" Multiplicity="*" />
-    <End Role="DocType" Type="Model.Store.DocTypes" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="DocType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Document">
-        <PropertyRef Name="DocTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="DocumentProfile">
     <End Role="Document" Type="Model.Store.ProfileDocuments" Multiplicity="*" />
     <End Role="Profile" Type="Model.Store.PersonalInfoes" Multiplicity="1" />
@@ -331,18 +281,6 @@
       </Principal>
       <Dependent Role="Document">
         <PropertyRef Name="ProfileId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="QHSEIsoCertificate">
-    <End Role="QHSE" Type="Model.Store.QHSEs" Multiplicity="1" />
-    <End Role="IsoCertificate" Type="Model.Store.IsoCertificates" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="QHSE">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="IsoCertificate">
-        <PropertyRef Name="QHSEId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -398,18 +336,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="JobJobType">
-    <End Role="Job" Type="Model.Store.Jobs" Multiplicity="*" />
-    <End Role="JobType" Type="Model.Store.JobTypes" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="JobType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Job">
-        <PropertyRef Name="JobTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="WorkExperiencePersonalInfo">
     <End Role="WorkExperience" Type="Model.Store.WorkExperiences" Multiplicity="*" />
     <End Role="PersonalInfo" Type="Model.Store.PersonalInfoes" Multiplicity="1" />
@@ -434,27 +360,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="EducationLevelEducation">
-    <End Role="EducationLevel" Type="Model.Store.EducationLevels" Multiplicity="1" />
-    <End Role="Education" Type="Model.Store.Educations" Multiplicity="*" />
+  <Association Name="ServiceServiceDetails">
+    <End Role="Service" Type="Model.Store.Services" Multiplicity="1" />
+    <End Role="ServiceDetails" Type="Model.Store.ServiceDetails" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="EducationLevel">
+      <Principal Role="Service">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Education">
-        <PropertyRef Name="EducationLevelId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CountryEducation">
-    <End Role="Country" Type="Model.Store.Countries" Multiplicity="1" />
-    <End Role="Education" Type="Model.Store.Educations" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Country">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Education">
-        <PropertyRef Name="CountryId" />
+      <Dependent Role="ServiceDetails">
+        <PropertyRef Name="ServiceId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -490,27 +404,16 @@
           <EntitySet Name="Homes" EntityType="Model.Home" />
           <EntitySet Name="Abouts" EntityType="Model.About" />
           <EntitySet Name="Projects" EntityType="Model.Project" />
-          <EntitySet Name="Services" EntityType="Model.Service" />
+          <EntitySet Name="ServiceDetails" EntityType="Model.ServiceDetails" />
           <EntitySet Name="QHSEs" EntityType="Model.QHSE" />
           <EntitySet Name="PersonalInfoes" EntityType="Model.PersonalInfo" />
           <EntitySet Name="Jobs" EntityType="Model.Job" />
           <EntitySet Name="ProfileDocuments" EntityType="Model.ProfileDocument" />
-          <EntitySet Name="DocTypes" EntityType="Model.DocType" />
-          <AssociationSet Name="DocumentDocType" Association="Model.DocumentDocType">
-            <End Role="Document" EntitySet="ProfileDocuments" />
-            <End Role="DocType" EntitySet="DocTypes" />
-          </AssociationSet>
           <AssociationSet Name="DocumentProfile" Association="Model.DocumentProfile">
             <End Role="Document" EntitySet="ProfileDocuments" />
             <End Role="Profile" EntitySet="PersonalInfoes" />
           </AssociationSet>
           <EntitySet Name="ContactUs" EntityType="Model.ContactUs" />
-          <EntitySet Name="JobTypes" EntityType="Model.JobType" />
-          <EntitySet Name="IsoCertificates" EntityType="Model.IsoCertificate" />
-          <AssociationSet Name="QHSEIsoCertificate" Association="Model.QHSEIsoCertificate">
-            <End Role="QHSE" EntitySet="QHSEs" />
-            <End Role="IsoCertificate" EntitySet="IsoCertificates" />
-          </AssociationSet>
           <EntitySet Name="JobApplications" EntityType="Model.JobApplication" />
           <AssociationSet Name="JobApplicationProfile" Association="Model.JobApplicationProfile">
             <End Role="JobApplication" EntitySet="JobApplications" />
@@ -536,10 +439,6 @@
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <AssociationSet Name="JobJobType" Association="Model.JobJobType">
-            <End Role="Job" EntitySet="Jobs" />
-            <End Role="JobType" EntitySet="JobTypes" />
-          </AssociationSet>
           <EntitySet Name="Educations" EntityType="Model.Education" />
           <EntitySet Name="WorkExperiences" EntityType="Model.WorkExperience" />
           <AssociationSet Name="WorkExperiencePersonalInfo" Association="Model.WorkExperiencePersonalInfo">
@@ -550,16 +449,12 @@
             <End Role="PersonalInfo" EntitySet="PersonalInfoes" />
             <End Role="Education" EntitySet="Educations" />
           </AssociationSet>
-          <EntitySet Name="EducationLevels" EntityType="Model.EducationLevel" />
-          <AssociationSet Name="EducationLevelEducation" Association="Model.EducationLevelEducation">
-            <End Role="EducationLevel" EntitySet="EducationLevels" />
-            <End Role="Education" EntitySet="Educations" />
+          <EntitySet Name="Services" EntityType="Model.Service" />
+          <AssociationSet Name="ServiceServiceDetails" Association="Model.ServiceServiceDetails">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="ServiceDetails" EntitySet="ServiceDetails" />
           </AssociationSet>
-          <EntitySet Name="Countries" EntityType="Model.Country" />
-          <AssociationSet Name="CountryEducation" Association="Model.CountryEducation">
-            <End Role="Country" EntitySet="Countries" />
-            <End Role="Education" EntitySet="Educations" />
-          </AssociationSet>
+          <EntitySet Name="Careers" EntityType="Model.Career" />
         </EntityContainer>
         <EntityType Name="Home">
           <Key>
@@ -596,14 +491,15 @@
           <Property Name="Image" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Service">
+        <EntityType Name="ServiceDetails">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Image" Type="String" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Model.ServiceServiceDetails" FromRole="ServiceDetails" ToRole="Service" />
+          <Property Name="ServiceId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="QHSE">
           <Key>
@@ -612,25 +508,27 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Vision" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Mission" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="IsoCertificates" Relationship="Model.QHSEIsoCertificate" FromRole="QHSE" ToRole="IsoCertificate" />
           <Property Name="QhsePolicy" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="QhsePolicyAr" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="QhseIMS" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Hse" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="IsoCertificates" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="PersonalInfo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DateOfBirth" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Nationality" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Phone1" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Phone2" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DateOfBirth" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Nationality" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone1" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone2" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Documents" Relationship="Model.DocumentProfile" FromRole="Profile" ToRole="Document" />
           <NavigationProperty Name="JobApplications" Relationship="Model.JobApplicationProfile" FromRole="Profile" ToRole="JobApplication" />
-          <Property Name="Gender" Type="String" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="true" />
           <NavigationProperty Name="WorkExperiences" Relationship="Model.WorkExperiencePersonalInfo" FromRole="PersonalInfo" ToRole="WorkExperience" />
           <NavigationProperty Name="Educations" Relationship="Model.PersonalInfoEducation" FromRole="PersonalInfo" ToRole="Education" />
         </EntityType>
@@ -642,8 +540,7 @@
           <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="JobDetails" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="JobApplications" Relationship="Model.JobApplicationJob" FromRole="Job" ToRole="JobApplication" />
-          <NavigationProperty Name="JobType" Relationship="Model.JobJobType" FromRole="Job" ToRole="JobType" />
-          <Property Name="JobTypeId" Type="Int32" Nullable="false" />
+          <Property Name="JobType" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="ProfileDocument">
           <Key>
@@ -651,32 +548,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DocPath" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="DocType" Relationship="Model.DocumentDocType" FromRole="Document" ToRole="DocType" />
-          <Property Name="DocTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Document" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="DocType" Type="String" Nullable="false" />
           <NavigationProperty Name="Profile" Relationship="Model.DocumentProfile" FromRole="Document" ToRole="Profile" />
           <Property Name="ProfileId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="DocType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Documents" Relationship="Model.DocumentDocType" FromRole="DocType" ToRole="Document" />
-        </EntityType>
-        <Association Name="DocumentDocType">
-          <End Type="Model.ProfileDocument" Role="Document" Multiplicity="*" />
-          <End Type="Model.DocType" Role="DocType" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="DocType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Document">
-              <PropertyRef Name="DocTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="DocumentProfile">
           <End Type="Model.ProfileDocument" Role="Document" Multiplicity="*" />
           <End Type="Model.PersonalInfo" Role="Profile" Multiplicity="1" />
@@ -704,37 +580,6 @@
           <Property Name="LinkedIn" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" DefaultValue="False" />
         </EntityType>
-        <EntityType Name="JobType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Jobs" Relationship="Model.JobJobType" FromRole="JobType" ToRole="Job" />
-        </EntityType>
-        <EntityType Name="IsoCertificate">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Document" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="QHSE" Relationship="Model.QHSEIsoCertificate" FromRole="IsoCertificate" ToRole="QHSE" />
-          <Property Name="QHSEId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <Association Name="QHSEIsoCertificate">
-          <End Type="Model.QHSE" Role="QHSE" Multiplicity="1" />
-          <End Type="Model.IsoCertificate" Role="IsoCertificate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QHSE">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="IsoCertificate">
-              <PropertyRef Name="QHSEId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="JobApplication">
           <Key>
             <PropertyRef Name="Id" />
@@ -851,18 +696,6 @@
           <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
-        <Association Name="JobJobType">
-          <End Type="Model.Job" Role="Job" Multiplicity="*" />
-          <End Type="Model.JobType" Role="JobType" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="JobType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="JobTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Education">
           <Key>
             <PropertyRef Name="Id" />
@@ -875,10 +708,8 @@
           <Property Name="Highest" Type="Boolean" Nullable="false" DefaultValue="False" />
           <NavigationProperty Name="PersonalInfo" Relationship="Model.PersonalInfoEducation" FromRole="Education" ToRole="PersonalInfo" />
           <Property Name="PersonalInfoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EducationLevel" Relationship="Model.EducationLevelEducation" FromRole="Education" ToRole="EducationLevel" />
-          <Property Name="EducationLevelId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Country" Relationship="Model.CountryEducation" FromRole="Education" ToRole="Country" />
-          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="EducationLevel" Type="String" Nullable="false" />
+          <Property Name="Country" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="WorkExperience">
           <Key>
@@ -916,46 +747,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="EducationLevel">
+        <EntityType Name="Service">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LevelName" Type="String" Nullable="false" />
-          <NavigationProperty Name="Educations" Relationship="Model.EducationLevelEducation" FromRole="EducationLevel" ToRole="Education" />
+          <Property Name="ServiceHead" Type="String" Nullable="false" />
+          <Property Name="ServiceFoot" Type="String" Nullable="false" />
+          <NavigationProperty Name="ServiceDetails" Relationship="Model.ServiceServiceDetails" FromRole="Service" ToRole="ServiceDetails" />
         </EntityType>
-        <Association Name="EducationLevelEducation">
-          <End Type="Model.EducationLevel" Role="EducationLevel" Multiplicity="1" />
-          <End Type="Model.Education" Role="Education" Multiplicity="*" />
+        <Association Name="ServiceServiceDetails">
+          <End Type="Model.Service" Role="Service" Multiplicity="1" />
+          <End Type="Model.ServiceDetails" Role="ServiceDetails" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EducationLevel">
+            <Principal Role="Service">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Education">
-              <PropertyRef Name="EducationLevelId" />
+            <Dependent Role="ServiceDetails">
+              <PropertyRef Name="ServiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Country">
+        <EntityType Name="Career">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CountryName" Type="String" Nullable="false" />
-          <NavigationProperty Name="Educations" Relationship="Model.CountryEducation" FromRole="Country" ToRole="Education" />
+          <Property Name="CareerMsg" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" DefaultValue="True" />
         </EntityType>
-        <Association Name="CountryEducation">
-          <End Type="Model.Country" Role="Country" Multiplicity="1" />
-          <End Type="Model.Education" Role="Education" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Country">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Education">
-              <PropertyRef Name="CountryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1000,13 +820,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Services">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Service)">
-        <MappingFragment StoreEntitySet="Services">
+    <EntitySetMapping Name="ServiceDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ServiceDetails)">
+        <MappingFragment StoreEntitySet="ServiceDetails">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1019,6 +839,8 @@
           <ScalarProperty Name="QhsePolicy" ColumnName="QhsePolicy" />
           <ScalarProperty Name="QhsePolicyAr" ColumnName="QhsePolicyAr" />
           <ScalarProperty Name="QhseIMS" ColumnName="QhseIMS" />
+          <ScalarProperty Name="Hse" ColumnName="Hse" />
+          <ScalarProperty Name="IsoCertificates" ColumnName="IsoCertificates" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1028,6 +850,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="Nationality" ColumnName="Nationality" />
           <ScalarProperty Name="Phone1" ColumnName="Phone1" />
@@ -1042,7 +865,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
           <ScalarProperty Name="JobDetails" ColumnName="JobDetails" />
-          <ScalarProperty Name="JobTypeId" ColumnName="JobTypeId" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1051,17 +874,9 @@
         <MappingFragment StoreEntitySet="ProfileDocuments">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
-          <ScalarProperty Name="DocTypeId" ColumnName="DocTypeId" />
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="DocType" ColumnName="DocType" />
           <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DocTypes">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.DocType)">
-        <MappingFragment StoreEntitySet="DocTypes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1078,25 +893,6 @@
           <ScalarProperty Name="Twitter" ColumnName="Twitter" />
           <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
           <ScalarProperty Name="Active" ColumnName="Active" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="JobTypes">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.JobType)">
-        <MappingFragment StoreEntitySet="JobTypes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IsoCertificates">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.IsoCertificate)">
-        <MappingFragment StoreEntitySet="IsoCertificates">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Document" ColumnName="Document" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="QHSEId" ColumnName="QHSEId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1165,8 +961,8 @@
           <ScalarProperty Name="EndDate" ColumnName="EndDate" />
           <ScalarProperty Name="Highest" ColumnName="Highest" />
           <ScalarProperty Name="PersonalInfoId" ColumnName="PersonalInfoId" />
-          <ScalarProperty Name="EducationLevelId" ColumnName="EducationLevelId" />
-          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1182,19 +978,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EducationLevels">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.EducationLevel)">
-        <MappingFragment StoreEntitySet="EducationLevels">
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Service)">
+        <MappingFragment StoreEntitySet="Services">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+          <ScalarProperty Name="ServiceHead" ColumnName="ServiceHead" />
+          <ScalarProperty Name="ServiceFoot" ColumnName="ServiceFoot" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Countries">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Country)">
-        <MappingFragment StoreEntitySet="Countries">
+    <EntitySetMapping Name="Careers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Career)">
+        <MappingFragment StoreEntitySet="Careers">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+          <ScalarProperty Name="CareerMsg" ColumnName="CareerMsg" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -23,10 +23,9 @@ namespace Centroid.Models
         public int Id { get; set; }
         public string JobTitle { get; set; }
         public string JobDetails { get; set; }
-        public int JobTypeId { get; set; }
+        public string JobType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<JobApplication> JobApplications { get; set; }
-        public virtual JobType JobType { get; set; }
     }
 }

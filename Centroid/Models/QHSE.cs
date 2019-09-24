@@ -14,20 +14,13 @@ namespace Centroid.Models
     
     public partial class QHSE
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public QHSE()
-        {
-            this.IsoCertificates = new HashSet<IsoCertificate>();
-        }
-    
         public int Id { get; set; }
         public string Vision { get; set; }
         public string Mission { get; set; }
         public string QhsePolicy { get; set; }
         public string QhsePolicyAr { get; set; }
         public string QhseIMS { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<IsoCertificate> IsoCertificates { get; set; }
+        public string Hse { get; set; }
+        public string IsoCertificates { get; set; }
     }
 }
