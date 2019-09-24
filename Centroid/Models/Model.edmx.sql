@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/24/2019 17:45:51
+-- Date Created: 07/31/2019 14:35:54
 -- Generated from EDMX file: D:\Projects\Centroid\Centroid\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -17,14 +17,8 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_DocumentDocType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ProfileDocuments] DROP CONSTRAINT [FK_DocumentDocType];
-GO
 IF OBJECT_ID(N'[dbo].[FK_DocumentProfile]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ProfileDocuments] DROP CONSTRAINT [FK_DocumentProfile];
-GO
-IF OBJECT_ID(N'[dbo].[FK_QHSEIsoCertificate]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[IsoCertificates] DROP CONSTRAINT [FK_QHSEIsoCertificate];
 GO
 IF OBJECT_ID(N'[dbo].[FK_JobApplicationProfile]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[JobApplications] DROP CONSTRAINT [FK_JobApplicationProfile];
@@ -44,8 +38,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_JobJobType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_JobJobType];
+IF OBJECT_ID(N'[dbo].[FK_WorkExperiencePersonalInfo]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkExperiences] DROP CONSTRAINT [FK_WorkExperiencePersonalInfo];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonalInfoEducation]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Educations] DROP CONSTRAINT [FK_PersonalInfoEducation];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServiceServiceDetails]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServiceDetails] DROP CONSTRAINT [FK_ServiceServiceDetails];
 GO
 
 -- --------------------------------------------------
@@ -61,14 +61,14 @@ GO
 IF OBJECT_ID(N'[dbo].[Projects]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Projects];
 GO
-IF OBJECT_ID(N'[dbo].[Services]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Services];
+IF OBJECT_ID(N'[dbo].[ServiceDetails]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ServiceDetails];
 GO
 IF OBJECT_ID(N'[dbo].[QHSEs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[QHSEs];
 GO
-IF OBJECT_ID(N'[dbo].[Profiles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Profiles];
+IF OBJECT_ID(N'[dbo].[PersonalInfoes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonalInfoes];
 GO
 IF OBJECT_ID(N'[dbo].[Jobs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Jobs];
@@ -76,17 +76,8 @@ GO
 IF OBJECT_ID(N'[dbo].[ProfileDocuments]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ProfileDocuments];
 GO
-IF OBJECT_ID(N'[dbo].[DocTypes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[DocTypes];
-GO
 IF OBJECT_ID(N'[dbo].[ContactUs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ContactUs];
-GO
-IF OBJECT_ID(N'[dbo].[JobTypes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[JobTypes];
-GO
-IF OBJECT_ID(N'[dbo].[IsoCertificates]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[IsoCertificates];
 GO
 IF OBJECT_ID(N'[dbo].[JobApplications]', 'U') IS NOT NULL
     DROP TABLE [dbo].[JobApplications];
@@ -102,6 +93,15 @@ IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetRoles];
+GO
+IF OBJECT_ID(N'[dbo].[Educations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Educations];
+GO
+IF OBJECT_ID(N'[dbo].[WorkExperiences]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkExperiences];
+GO
+IF OBJECT_ID(N'[dbo].[Services]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Services];
 GO
 IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserRoles];
@@ -146,12 +146,12 @@ CREATE TABLE [dbo].[Projects] (
 );
 GO
 
--- Creating table 'Services'
-CREATE TABLE [dbo].[Services] (
+-- Creating table 'ServiceDetails'
+CREATE TABLE [dbo].[ServiceDetails] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Title] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Image] nvarchar(max)  NOT NULL
+    [Image] nvarchar(max)  NOT NULL,
+    [ServiceId] int  NOT NULL
 );
 GO
 
@@ -162,20 +162,24 @@ CREATE TABLE [dbo].[QHSEs] (
     [Mission] nvarchar(max)  NOT NULL,
     [QhsePolicy] nvarchar(max)  NOT NULL,
     [QhsePolicyAr] nvarchar(max)  NOT NULL,
-    [QhseIMS] nvarchar(max)  NOT NULL
+    [QhseIMS] nvarchar(max)  NOT NULL,
+    [Hse] nvarchar(max)  NOT NULL,
+	[IsoCertificates] nvarchar(max)  NOT NULL
+
 );
 GO
 
 -- Creating table 'PersonalInfoes'
 CREATE TABLE [dbo].[PersonalInfoes] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [FullName] nvarchar(max)  NOT NULL,
+    [FullName] nvarchar(max)  NULL,
     [Email] nvarchar(max)  NOT NULL,
-    [DateOfBirth] nvarchar(max)  NOT NULL,
-    [Nationality] nvarchar(max)  NOT NULL,
-    [Phone1] nvarchar(max)  NOT NULL,
-    [Phone2] nvarchar(max)  NOT NULL,
-    [Gender] nvarchar(max)  NOT NULL
+    [Password] nvarchar(max)  NOT NULL,
+    [DateOfBirth] nvarchar(max)  NULL,
+    [Nationality] nvarchar(max)  NULL,
+    [Phone1] nvarchar(max)  NULL,
+    [Phone2] nvarchar(max)  NULL,
+    [Gender] nvarchar(max)  NULL
 );
 GO
 
@@ -184,7 +188,7 @@ CREATE TABLE [dbo].[Jobs] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [JobTitle] nvarchar(max)  NOT NULL,
     [JobDetails] nvarchar(max)  NOT NULL,
-    [JobTypeId] int  NOT NULL
+    [JobType] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -192,16 +196,9 @@ GO
 CREATE TABLE [dbo].[ProfileDocuments] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [DocPath] nvarchar(max)  NOT NULL,
-    [DocTypeId] int  NOT NULL,
+    [Document] nvarchar(max)  NOT NULL,
+    [DocType] nvarchar(50)  NOT NULL,
     [ProfileId] int  NOT NULL
-);
-GO
-
--- Creating table 'DocTypes'
-CREATE TABLE [dbo].[DocTypes] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -220,22 +217,6 @@ CREATE TABLE [dbo].[ContactUs] (
 );
 GO
 
--- Creating table 'JobTypes'
-CREATE TABLE [dbo].[JobTypes] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'IsoCertificates'
-CREATE TABLE [dbo].[IsoCertificates] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Title] nvarchar(max)  NOT NULL,
-    [Document] nvarchar(max)  NOT NULL,
-    [Description] nvarchar(max)  NOT NULL,
-    [QHSEId] int  NOT NULL
-);
-GO
 
 -- Creating table 'JobApplications'
 CREATE TABLE [dbo].[JobApplications] (
@@ -296,8 +277,8 @@ CREATE TABLE [dbo].[Educations] (
     [EndDate] datetime  NOT NULL,
     [Highest] bit  NOT NULL,
     [PersonalInfoId] int  NOT NULL,
-    [EducationLevelId] int  NOT NULL,
-    [CountryId] int  NOT NULL
+    [EducationLevel] nvarchar(50)  NOT NULL,
+    [Country] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -312,17 +293,11 @@ CREATE TABLE [dbo].[WorkExperiences] (
 );
 GO
 
--- Creating table 'EducationLevels'
-CREATE TABLE [dbo].[EducationLevels] (
+-- Creating table 'Services'
+CREATE TABLE [dbo].[Services] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [LevelName] nvarchar(max)  NOT NULL
-);
-GO
-
--- Creating table 'Countries'
-CREATE TABLE [dbo].[Countries] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [CountryName] nvarchar(max)  NOT NULL
+    [ServiceHead] nvarchar(max)  NOT NULL,
+    [ServiceFoot] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -355,9 +330,9 @@ ADD CONSTRAINT [PK_Projects]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Services'
-ALTER TABLE [dbo].[Services]
-ADD CONSTRAINT [PK_Services]
+-- Creating primary key on [Id] in table 'ServiceDetails'
+ALTER TABLE [dbo].[ServiceDetails]
+ADD CONSTRAINT [PK_ServiceDetails]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -385,11 +360,6 @@ ADD CONSTRAINT [PK_ProfileDocuments]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'DocTypes'
-ALTER TABLE [dbo].[DocTypes]
-ADD CONSTRAINT [PK_DocTypes]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
 
 -- Creating primary key on [Id] in table 'ContactUs'
 ALTER TABLE [dbo].[ContactUs]
@@ -397,17 +367,6 @@ ADD CONSTRAINT [PK_ContactUs]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'JobTypes'
-ALTER TABLE [dbo].[JobTypes]
-ADD CONSTRAINT [PK_JobTypes]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'IsoCertificates'
-ALTER TABLE [dbo].[IsoCertificates]
-ADD CONSTRAINT [PK_IsoCertificates]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
 
 -- Creating primary key on [Id] in table 'JobApplications'
 ALTER TABLE [dbo].[JobApplications]
@@ -451,15 +410,9 @@ ADD CONSTRAINT [PK_WorkExperiences]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'EducationLevels'
-ALTER TABLE [dbo].[EducationLevels]
-ADD CONSTRAINT [PK_EducationLevels]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Countries'
-ALTER TABLE [dbo].[Countries]
-ADD CONSTRAINT [PK_Countries]
+-- Creating primary key on [Id] in table 'Services'
+ALTER TABLE [dbo].[Services]
+ADD CONSTRAINT [PK_Services]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -472,21 +425,6 @@ GO
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [DocTypeId] in table 'ProfileDocuments'
-ALTER TABLE [dbo].[ProfileDocuments]
-ADD CONSTRAINT [FK_DocumentDocType]
-    FOREIGN KEY ([DocTypeId])
-    REFERENCES [dbo].[DocTypes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DocumentDocType'
-CREATE INDEX [IX_FK_DocumentDocType]
-ON [dbo].[ProfileDocuments]
-    ([DocTypeId]);
-GO
 
 -- Creating foreign key on [ProfileId] in table 'ProfileDocuments'
 ALTER TABLE [dbo].[ProfileDocuments]
@@ -501,21 +439,6 @@ GO
 CREATE INDEX [IX_FK_DocumentProfile]
 ON [dbo].[ProfileDocuments]
     ([ProfileId]);
-GO
-
--- Creating foreign key on [QHSEId] in table 'IsoCertificates'
-ALTER TABLE [dbo].[IsoCertificates]
-ADD CONSTRAINT [FK_QHSEIsoCertificate]
-    FOREIGN KEY ([QHSEId])
-    REFERENCES [dbo].[QHSEs]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_QHSEIsoCertificate'
-CREATE INDEX [IX_FK_QHSEIsoCertificate]
-ON [dbo].[IsoCertificates]
-    ([QHSEId]);
 GO
 
 -- Creating foreign key on [ProfileId] in table 'JobApplications'
@@ -602,20 +525,6 @@ ON [dbo].[AspNetUserRoles]
     ([UserId]);
 GO
 
--- Creating foreign key on [JobTypeId] in table 'Jobs'
-ALTER TABLE [dbo].[Jobs]
-ADD CONSTRAINT [FK_JobJobType]
-    FOREIGN KEY ([JobTypeId])
-    REFERENCES [dbo].[JobTypes]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_JobJobType'
-CREATE INDEX [IX_FK_JobJobType]
-ON [dbo].[Jobs]
-    ([JobTypeId]);
-GO
 
 -- Creating foreign key on [PersonalInfoId] in table 'WorkExperiences'
 ALTER TABLE [dbo].[WorkExperiences]
@@ -647,34 +556,20 @@ ON [dbo].[Educations]
     ([PersonalInfoId]);
 GO
 
--- Creating foreign key on [EducationLevelId] in table 'Educations'
-ALTER TABLE [dbo].[Educations]
-ADD CONSTRAINT [FK_EducationLevelEducation]
-    FOREIGN KEY ([EducationLevelId])
-    REFERENCES [dbo].[EducationLevels]
+
+-- Creating foreign key on [ServiceId] in table 'ServiceDetails'
+ALTER TABLE [dbo].[ServiceDetails]
+ADD CONSTRAINT [FK_ServiceServiceDetails]
+    FOREIGN KEY ([ServiceId])
+    REFERENCES [dbo].[Services]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_EducationLevelEducation'
-CREATE INDEX [IX_FK_EducationLevelEducation]
-ON [dbo].[Educations]
-    ([EducationLevelId]);
-GO
-
--- Creating foreign key on [CountryId] in table 'Educations'
-ALTER TABLE [dbo].[Educations]
-ADD CONSTRAINT [FK_CountryEducation]
-    FOREIGN KEY ([CountryId])
-    REFERENCES [dbo].[Countries]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CountryEducation'
-CREATE INDEX [IX_FK_CountryEducation]
-ON [dbo].[Educations]
-    ([CountryId]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_ServiceServiceDetails'
+CREATE INDEX [IX_FK_ServiceServiceDetails]
+ON [dbo].[ServiceDetails]
+    ([ServiceId]);
 GO
 
 -- --------------------------------------------------

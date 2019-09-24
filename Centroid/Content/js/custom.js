@@ -15,7 +15,7 @@
 				if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
 					$("body").addClass("fixed-header-on");
 				} else {
-					//$("body").removeClass("fixed-header-on");
+					$("body").removeClass("fixed-header-on");
 				}
 			};
 		});
@@ -25,7 +25,7 @@
 				if(($(this).scrollTop() > 0) && ($(window).width() > 767)) {
 					$("body").addClass("fixed-header-on");
 				} else {
-					//$("body").removeClass("fixed-header-on");
+					$("body").removeClass("fixed-header-on");
 				}
 			};
 		});
@@ -36,13 +36,13 @@
 	   });
 		//Scroll Spy
 		//-----------------------------------------------
-		//if($(".scrollspy").length>0) {
-		//	$("body").addClass("scroll-spy");
-		//	$('body').scrollspy({ 
-		//		target: '.scrollspy',
-		//		offset: 152
-		//	});
-		//}
+		if($(".scrollspy").length>0) {
+			$("body").addClass("scroll-spy");
+			$('body').scrollspy({ 
+				target: '.scrollspy',
+				offset: 152
+			});
+		}
 
 		//Smooth Scroll
 		//-----------------------------------------------

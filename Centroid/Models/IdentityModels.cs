@@ -36,10 +36,24 @@ namespace Centroid.Models
 
         public System.Data.Entity.DbSet<Centroid.Models.Job> Jobs { get; set; }
 
-        public System.Data.Entity.DbSet<Centroid.Models.JobType> JobTypes { get; set; }
-
         public System.Data.Entity.DbSet<Centroid.Models.ProfileDocument> ProfileDocuments { get; set; }
 
-        public System.Data.Entity.DbSet<Centroid.Models.DocType> DocTypes { get; set; }
+        public System.Data.Entity.DbSet<Centroid.Models.Service> Services { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.ServiceDetails> ServiceDetails { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.Project> Projects { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.QHSE> QHSEs { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.JobApplication> JobApplications { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.PersonalInfo> PersonalInfoes { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.Education> Educations { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.WorkExperience> WorkExperiences { get; set; }
+
+        public System.Data.Entity.DbSet<Centroid.Models.ContactUs> ContactUs { get; set; }
     }
 }

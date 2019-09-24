@@ -1,0 +1,93 @@
+﻿@model Centroid.Models.Education
+
+@{
+    ViewBag.Title = "Education";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Education</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.Hidden("JobId", (int?)ViewBag.JobId)
+                @Html.Hidden("ProfileId", (int)ViewBag.ProfileId)
+                @Html.HiddenFor(model => model.PersonalInfoId, htmlAttributes: new { @Value = ViewBag.ProfileId })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EducationalInstitution, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.EducationalInstitution, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EducationalInstitution, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Discipline, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.EditorFor(model => model.Discipline, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Discipline, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EducationLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-5">
+                        @Html.DropDownList("EducationLevel", null, String.Empty, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EducationLevel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.DropDownList("Country", null, String.Empty, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Highest, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Highest)
+                            @Html.ValidationMessageFor(model => model.Highest, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-2">
+                        @Html.ActionLink("Cancel", "Index", "Educations", new { jobId = ViewBag.JobId, ProfileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-secondary" })
+                    </div>
+                    <div class="col-md-5">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

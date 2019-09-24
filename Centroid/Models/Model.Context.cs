@@ -28,15 +28,12 @@ namespace Centroid.Models
         public virtual DbSet<Home> Homes { get; set; }
         public virtual DbSet<About> Abouts { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
-        public virtual DbSet<Service> Services { get; set; }
+        public virtual DbSet<ServiceDetails> ServiceDetails { get; set; }
         public virtual DbSet<QHSE> QHSEs { get; set; }
         public virtual DbSet<PersonalInfo> PersonalInfoes { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
         public virtual DbSet<ProfileDocument> ProfileDocuments { get; set; }
-        public virtual DbSet<DocType> DocTypes { get; set; }
         public virtual DbSet<ContactUs> ContactUs { get; set; }
-        public virtual DbSet<JobType> JobTypes { get; set; }
-        public virtual DbSet<IsoCertificate> IsoCertificates { get; set; }
         public virtual DbSet<JobApplication> JobApplications { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -44,7 +41,6 @@ namespace Centroid.Models
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<WorkExperience> WorkExperiences { get; set; }
-        public virtual DbSet<EducationLevel> EducationLevels { get; set; }
-        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Service> Services { get; set; }
     }
 }

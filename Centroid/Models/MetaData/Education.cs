@@ -29,14 +29,16 @@ namespace Centroid.Models
         [Required, Display(Name = "Discipline"), DataType(DataType.Text)]
         public string Discipline { get; set; }
         [Required, Display(Name = "Start Date"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime StartDate { get; set; }
         [Required, Display(Name = "End Date"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime EndDate { get; set; }
         [Required, Display(Name = "Education Level")]
-        public int EducationLevelId { get; set; }
+        public string EducationLevel { get; set; }
         [Required, Display(Name = "Country")]
-        public int CountryId { get; set; }
-        [Required, Display(Name = "Profile ID")]
+        public string Country { get; set; }
+        [Display(Name = "Profile ID")]
         public int PersonalInfoId { get; set; }
 
     }

@@ -16,11 +16,10 @@ namespace Centroid.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string DocPath { get; set; }
-        public int DocTypeId { get; set; }
+        public string Document { get; set; }
+        public string DocType { get; set; }
         public int ProfileId { get; set; }
     
-        public virtual DocType DocType { get; set; }
         public virtual PersonalInfo Profile { get; set; }
     }
 }

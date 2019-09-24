@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Centroid.Models.Education>
+@{
+    ViewBag.Title = "Education";
+}
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <p>
+            @Html.ActionLink("Add New", "Create", "Educations", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-secondary" })
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EducationalInstitution)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Discipline)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EducationLevel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Highest)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EducationalInstitution)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discipline)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EducationLevel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Highest)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Educations", new { id = item.Id, jobId = ViewBag.JobId, profileId = item.PersonalInfoId }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Educations", new { id = item.Id, jobId = ViewBag.JobId, profileId = item.PersonalInfoId }, null)
+                    </td>
+                </tr>
+            }
+        </table>
+        <p>
+            @Html.ActionLink("Back", "Create", "Profiles", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-secondary" })
+            @Html.ActionLink("Exit", "Job", "Careers", null, htmlAttributes: new { @class = "btn btn-danger" })
+            @Html.ActionLink("Continue", "Index", "WorkExperiences", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</section>

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Complete";
+}
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <h2>Complete</h2>
+        <h3>
+            Thank you for Applying to @ViewBag.JobTitle
+        </h3>
+        <div class="col-md-2 btn btn-secondary">
+            @Html.ActionLink("Close", "Job", "Careers",null , htmlAttributes: new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</section>
+

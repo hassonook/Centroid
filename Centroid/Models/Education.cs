@@ -27,11 +27,9 @@ namespace Centroid.Models
         public System.DateTime EndDate { get; set; }
         public bool Highest { get; set; }
         public int PersonalInfoId { get; set; }
-        public int EducationLevelId { get; set; }
-        public int CountryId { get; set; }
+        public string EducationLevel { get; set; }
+        public string Country { get; set; }
     
         public virtual PersonalInfo PersonalInfo { get; set; }
-        public virtual EducationLevel EducationLevel { get; set; }
-        public virtual Country Country { get; set; }
     }
 }

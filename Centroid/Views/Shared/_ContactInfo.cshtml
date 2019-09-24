@@ -1,0 +1,15 @@
+﻿@model Centroid.Models.ContactUs
+    <aside>
+        <div class="widget-content">
+            <p>If you have any questions don't hesitate to contact us. </p><br />
+            <p class="contacts"><i class="fa fa-map-marker"></i> @Model.Address1 </ p >
+            <p class="contacts"><i class="fa fa-phone"></i> @Model.Phone</p>
+            <p class="contacts"><i class="fa fa-envelope"></i> @Model.Email</p>
+        </div>
+    </aside>
+    <ul class="social-links">
+        <li class="facebook"><a target="_blank" href="@Model.Facebook"><i class="fa fa-facebook"></i></a></li>
+        <li class="twitter"><a target="_blank" href="@Model.Twitter"><i class="fa fa-twitter"></i></a></li>
+        <li class="linkedin"><a target="_blank" href="@Model.LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+    </ul>
+

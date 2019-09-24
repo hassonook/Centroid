@@ -12,6 +12,7 @@ namespace Centroid.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     [MetadataType(typeof(AboutMetadata))]
     public partial class About
@@ -23,31 +24,37 @@ namespace Centroid.Models
         public int Id { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "About Us")]
         [DataType(DataType.MultilineText)]
         public string AboutUs { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Vision")]
         [DataType(DataType.MultilineText)]
         public string Vision { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Mission")]
         [DataType(DataType.MultilineText)]
         public string Mission { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Core Business")]
         [DataType(DataType.MultilineText)]
         public string CoreBusiness { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Experience")]
         [DataType(DataType.MultilineText)]
         public string Experience { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Expertise")]
         [DataType(DataType.MultilineText)]
         public string Expertise { get; set; }

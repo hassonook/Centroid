@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Centroid.Models.Project>
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    ViewBag.Title = "Index";
+    string status = "Active";
+}
+
+<!-- section start -->
+<section class="section secPadding portfolio">
+    <div class="container">
+        <h1 class="text-center title" id="portfolio">Projects</h1>
+        <div class="separator"></div>
+        <p class="lead text-center">Lorem ipsum dolor sit amet laudantium molestias simi Quisquam incidunt.</p>
+        <hr />
+        <div class="row no-view" data-animation-effect="fadeIn">
+            <div class="col-md-12">
+
+                <!-- isotope filters start -->
+                <div class="filters text-center">
+                    <ul class="nav nav-pills">
+                        <li class="active"><a href="#" data-filter="*">All</a></li>
+                        <li><a href="#" data-filter=".Active">Active</a></li>
+                        <li><a href="#" data-filter=".Close">Close</a></li>
+                    </ul>
+                </div>
+                <!-- isotope filters end -->
+                <!-- portfolio items start -->
+                <div class="isotope-container row grid-space-20">
+                    @foreach (var item in Model)
+                    {
+                        if (item.EndDate > System.DateTime.Now)
+                        {
+                            status = "Close";
+                        }
+                        <div class="col-sm-6 col-md-3 isotope-item @status">
+                            <div class="image-box">
+                                <div class="overlay-container">
+                                    <img src="@Url.Content(item.Image)"/>
+                                    <a class="overlay" data-toggle="modal" data-target="#@item.Id">
+                                        <i class="fa fa-search-plus"></i>
+
+                                    </a>
+                                </div>
+                                <a class="btn btn-default btn-block" data-toggle="modal" data-target="#@item.Id">@item.ProjectTitle</a>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="@item.Id" tabindex="-1" role="dialog" aria-labelledby="@item.Id-label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="@item.Id-label">@item.ProjectTitle</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12 image">
+                                                    <img src="@Url.Content(item.Image)" />
+                                                    <br />
+                                                    @Html.Raw(Server.HtmlDecode(item.Description))
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Modal end -->
+                        </div>
+                    }
+                </div>
+                <!-- portfolio items end -->
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

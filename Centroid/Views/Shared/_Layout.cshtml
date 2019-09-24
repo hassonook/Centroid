@@ -1,44 +1,209 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html >
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - Centroid</title>
+    <meta name="description" content="Responsive HTML5 Template">
+    <meta name="author" content="webthemez">
 
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/images/favicon.ico">
+
+    <link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Content/css/animations.css" rel="stylesheet">
+    <link href="~/Content/css/style.css" rel="stylesheet">
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+<body class="no-trans scroll-spy">
+    <!-- scrollToTop -->
+    <div class="scrollToTop"><i class="icon-up-open-big"></i></div>
+    <!-- header start -->
+    <header class="header fixed clearfix navbar navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+            <div class="row">
+                <div class="col-md-4 col-xs-4 logo-sec">
+                    <!-- header-left start -->
+                    <div class="header-left">
+                        <!-- logo -->
+                        <div class="logo smooth-scroll">
+                            @*<a href="#banner"><i class="fa fa-trophy"></i></a>*@
+                            <img src="~/Content/images/Logo/LOGO.png" />
+                        </div>
+                        <!-- name-and-slogan -->
+                        <div class="logo-section smooth-scroll">
+                            <div class="brand"><a href="#">CENTROID</a></div>
+                            @*<img class="brand" src="~/Content/images/Logo/CENTROID.png" />*@
+                        </div>
+
+                    </div>
+                    <!-- header-left end -->
+
+                </div>
+                <div class="col-md-8 menu-sec">
+
+                    <!-- header-right start -->
+                    <div class="header-right">
+                        <!-- main-navigation start -->
+                        <div class="main-navigation animated">
+
+                            <!-- navbar start -->
+                            <nav class="navbar navbar-default" role="navigation">
+                                <div class="container-fluid">
+
+                                    <!-- Toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                            <li>@Html.ActionLink("AboutUs", "Index", "About")</li>
+                                            <li>@Html.ActionLink("Services", "Index", "Services")</li>
+                                            <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                                            <li>@Html.ActionLink("QHSE", "Index", "QHSE")</li>
+                                            <li>@Html.ActionLink("Careers", "Index", "Careers")</li>
+                                            <li><a href="#contact">Contact</a></li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </nav>
+                            <!-- navbar end -->
+
+                        </div>
+                        <!-- main-navigation end -->
+
+                    </div>
+                    <!-- header-right end -->
+
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </header>
+    <!-- header end -->
+    <div class="content-wrapper">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+    <!-- footer start -->
+    <footer id="footer">
+        <!-- .footer start -->
+        <div class="footer section">
+            <div class="container">
+                <h1 class="title text-center" id="contact">Contact Us</h1>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="footer-content">
+                            <!--NOTE: Update your email Id in "contact_me.php" file in order to receive emails from your contact form-->
+                            @using (Ajax.BeginForm("Index", "ContactUs", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "OnSuccess(data)", OnFailure = "OnFailure" }, new { @class = "form-horizontal", role = "form", id = "contactForm", name = "sentMessage" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="row container">
+                                        <div id="result" class="offset-2 col-md-offset-2 col-md-8 m-b-10 text-success">
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input name="name" type="text" class="form-control" placeholder="Full Name" id="name" required data-validation-required-message="Please enter your name" />
+                                            <p class="help-block"></p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <input name="email" type="email" class="form-control" placeholder="Email" id="email" required data-validation-required-message="Please enter your email" />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <textarea name="message" rows="10" cols="100" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter your message" minlength="5" data-validation-minlength-message="Min 5 characters" maxlength="999" style="resize:none"></textarea>
+                                        </div>
+                                    </div>
+                                    <div id="fail" class="text-danger"> </div> <!-- For fail messages -->
+                                    <button type="submit" class="btn btn-default pull-right">Send</button><br />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div id="ContactInfo" class="footer-content">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .footer end -->
+        <!-- .subfooter start -->
+        <div class="subfooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="text-center">
+                            Copyright © 2019. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- .subfooter end -->
+
+    </footer>
+    <!-- footer end -->
+    <!-- JavaScript -->
+    <script type="text/javascript" src="~/Content/plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/Content/bootstrap/js/bootstrap.min.js"></script>jqueryUnobtrusive
+    <script type="text/javascript" src="~/Content/plugins/modernizr.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/isotope/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="~/Content/plugins/jquery.appear.js"></script>
+    <script src="~/Content/contact/jqBootstrapValidation.js"></script>
+    <script src="~/Content/contact/contact_me.js"></script>
+
+    <!-- Custom Scripts -->
+    <script type="text/javascript" src="~/Content/js/custom.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery.devrama.slider.min-0.9.4.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slider-banner').DrSlider({
+                'transition': 'fade',
+                showNavigation: false,
+                progressColor: "#fff"
+            });
+            getContactUs();
+        });
+
+        function getContactUs() {
+            var url = "/ContactUs/";
+            $.get(url, function (data) {
+                $('#ContactInfo').html(data);
+            });
+        }
+
+        function OnSuccess(data) {
+            $("#result").html(data);
+        }
+
+        function OnFailure(data) {
+             alert(data);
+            $("#fail").html(data);
+        }
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

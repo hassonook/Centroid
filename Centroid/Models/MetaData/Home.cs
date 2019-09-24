@@ -13,6 +13,7 @@ namespace Centroid.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+    using System.Web.Mvc;
 
     [MetadataType(typeof(HomeMetadata))]
     public partial class Home
@@ -24,16 +25,17 @@ namespace Centroid.Models
         public int Id { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Image Name")]
         [DataType(DataType.Text)]
         public string Name { get; set; }
 
-        [Required]
         [Display(Name = "Image File")]
         [DataType(DataType.Upload)]
         public HttpPostedFileBase Image { get; set; }
 
         [Required]
+        [AllowHtml]
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }

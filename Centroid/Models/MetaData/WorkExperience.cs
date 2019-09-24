@@ -22,15 +22,19 @@ namespace Centroid.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required, Display(Name ="Employer"), DataType(DataType.Text)]
         public string Employer { get; set; }
+
         [Required, Display(Name = "Start Date"), DataType(DataType.Date)]
         public System.DateTime StartDate { get; set; }
+
         [Required, Display(Name = "End Date"), DataType(DataType.Date)]
         public System.DateTime EndDate { get; set; }
+
         [Required, Display(Name = "Job Title"), DataType(DataType.Text)]
         public string JobTitle { get; set; }
-        [Required, Display(Name = "Profile ID")]
+
         public int PersonalInfoId { get; set; }
 
     }

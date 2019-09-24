@@ -20,14 +20,11 @@ namespace Centroid.Models
     public class JobApplicationMetadata
     {
         public int Id { get; set; }
-        [Required]
         [Display(Name = "Apply Date")]
         [DataType(DataType.DateTime)]
         public System.DateTime ApplyDate { get; set; }
-        [Required]
         [Display(Name = "Profile")]
         public int ProfileId { get; set; }
-        [Required]
         [Display(Name = "Job")]
         public int JobId { get; set; }
     }

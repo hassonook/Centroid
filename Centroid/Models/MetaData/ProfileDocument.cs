@@ -25,13 +25,12 @@ namespace Centroid.Models
         [Display(Name = "File Name")]
         [DataType(DataType.Text)]
         public string Name { get; set; }
-        [Required]
         [Display(Name = "File")]
         [DataType(DataType.Upload)]
-        public HttpPostedFileBase DocPath { get; set; }
+        public HttpPostedFileBase Document { get; set; }
         [Required]
         [Display(Name = "Type")]
-        public int DocTypeId { get; set; }
+        public string DocType { get; set; }
         [Required]
         [Display(Name = "Profile")]
         public int ProfileId { get; set; }

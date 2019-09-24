@@ -13,6 +13,7 @@ namespace Centroid.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
+    using System.Web.Mvc;
 
     [MetadataType(typeof(ServiceMetadata))]
     public partial class Service
@@ -22,16 +23,15 @@ namespace Centroid.Models
     {
         public int Id { get; set; }
         [Required]
-        [Display(Name = "Title")]
-        [DataType(DataType.Text)]
-        public string Title { get; set; }
-        [Required]
-        [Display(Name = "Service Description")]
+        [AllowHtml]
+        [Display(Name = "Service Header")]
         [DataType(DataType.MultilineText)]
-        public string Description { get; set; }
-        [Display(Name = "Service Description")]
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase Image { get; set; }
+        public string ServiceHead { get; set; }
+        [Required]
+        [AllowHtml]
+        [Display(Name = "Service Footer")]
+        [DataType(DataType.MultilineText)]
+        public string ServiceFoot { get; set; }
 
     }
 }
