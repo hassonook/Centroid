@@ -1,0 +1,72 @@
+﻿@model Centroid.Models.QHSE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>QHSE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vision)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vision)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mission)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mission)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QhsePolicy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QhsePolicy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QhsePolicyAr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QhsePolicyAr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QhseIMS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QhseIMS)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "List")
+        </div>
+    }
+</div>
