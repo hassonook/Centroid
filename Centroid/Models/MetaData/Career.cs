@@ -9,6 +9,8 @@
 
 namespace Centroid.Models
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Web;
     using System.Web.Mvc;
@@ -24,7 +26,7 @@ namespace Centroid.Models
 
         [Required]
         [AllowHtml]
-        [Display(Name = "Career Page Text")]
+        [Display(Name = "Career Text")]
         [DataType(DataType.MultilineText)]
         public string CareerMsg { get; set; }
 
