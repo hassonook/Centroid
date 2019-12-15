@@ -32,7 +32,7 @@
 
                 <dd>
                     <span class="fa fa-file-archive-o"></span>
-                    <a href="@Url.Content(Model.Document)>">File</a>
+                    <a href="@Url.Content(Model.Document)">File</a>
                 </dd>
 
             </dl>
@@ -40,7 +40,7 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
-                @Html.Hidden("JobId", (int)ViewBag.JobId);
+                @Html.Hidden("JobId", (int?)ViewBag.JobId);
                 @Html.Hidden("ProfileId", (int)ViewBag.ProfileId);
                 <div class="form-actions no-color">
                     <input type="submit" value="Delete" class="btn btn-danger" /> |

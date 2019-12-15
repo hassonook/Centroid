@@ -24,6 +24,7 @@
     <EntitySet Name="WorkExperiences" EntityType="Model.Store.WorkExperiences" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Services" EntityType="Model.Store.Services" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Careers" EntityType="Model.Store.Careers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KeyRecords" EntityType="Model.Store.KeyRecords" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="AspNetUserRoles" EntityType="Model.Store.AspNetUserRoles" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="DocumentProfile" Association="Model.Store.DocumentProfile">
       <End Role="Document" EntitySet="ProfileDocuments" />
@@ -84,6 +85,7 @@
     <Property Name="AboutUs" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Vision" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Mission" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Values" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CoreBusiness" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Experience" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Expertise" Type="nvarchar(max)" Nullable="false" />
@@ -263,6 +265,14 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CareerMsg" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="KeyRecords">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecordText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RecordImage" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetUserRoles">
     <Key>
@@ -455,6 +465,7 @@
             <End Role="ServiceDetails" EntitySet="ServiceDetails" />
           </AssociationSet>
           <EntitySet Name="Careers" EntityType="Model.Career" />
+          <EntitySet Name="KeyRecords" EntityType="Model.KeyRecord" />
         </EntityContainer>
         <EntityType Name="Home">
           <Key>
@@ -474,6 +485,7 @@
           <Property Name="AboutUs" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Vision" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Mission" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Values" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CoreBusiness" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Experience" Type="String" Nullable="false" />
           <Property Name="Expertise" Type="String" Nullable="false" />
@@ -776,6 +788,14 @@
           <Property Name="CareerMsg" Type="String" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" DefaultValue="True" />
         </EntityType>
+        <EntityType Name="KeyRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecordText" Type="String" Nullable="false" />
+          <Property Name="RecordImage" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -800,6 +820,7 @@
           <ScalarProperty Name="AboutUs" ColumnName="AboutUs" />
           <ScalarProperty Name="Vision" ColumnName="Vision" />
           <ScalarProperty Name="Mission" ColumnName="Mission" />
+          <ScalarProperty Name="Values" ColumnName="Values" />
           <ScalarProperty Name="CoreBusiness" ColumnName="CoreBusiness" />
           <ScalarProperty Name="Experience" ColumnName="Experience" />
           <ScalarProperty Name="Expertise" ColumnName="Expertise" />
@@ -993,6 +1014,15 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CareerMsg" ColumnName="CareerMsg" />
           <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KeyRecords">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.KeyRecord)">
+        <MappingFragment StoreEntitySet="KeyRecords">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecordText" ColumnName="RecordText" />
+          <ScalarProperty Name="RecordImage" ColumnName="RecordImage" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

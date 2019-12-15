@@ -43,5 +43,6 @@ namespace Centroid.Models
         public virtual DbSet<WorkExperience> WorkExperiences { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Career> Careers { get; set; }
+        public virtual DbSet<KeyRecord> KeyRecords { get; set; }
     }
 }

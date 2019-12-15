@@ -1,0 +1,124 @@
+﻿@model Centroid.Models.QHSE
+    <section class="section secPadding aboutus" data-animation-effect="fadeIn">
+        <div class="container">
+            @using (Html.BeginForm("Edit", "QHSE", null, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>QHSE Page</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+                <div class="row">
+                    <div class="vision qhse col-md-12 col-sm-12 col-xs-12">
+                        @Html.EditorFor(model => model.Vision, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Vision, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="space"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                                    <!-- Bottom Carousel Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#quote-carousel" data-slide-to="1"></li>
+                                        <li data-target="#quote-carousel" data-slide-to="2"></li>
+                                    </ol>
+                                    <!-- Carousel Slides / Quotes -->
+                                    <div class="carousel-inner">
+                                        @{
+                                            var collections = Directory.GetFiles(Server.MapPath(Model.IsoCertificates));
+                                        }
+                                        @foreach (var file in collections)
+                                        {
+                                            var className = "item";
+                                            if (file == collections[0])
+                                            {
+                                                className = "item active";
+                                            }
+                                            var fileName = Path.GetFileName(file);
+                                            var imagePath = Model.IsoCertificates + "/" + fileName;
+                                            <div class="@className">
+                                                <img src="@Url.Content(imagePath)" alt="">
+                                            </div>
+                                        }
+                                    </div>
+                                    @Html.EditorFor(model => model.IsoCertificates, new { htmlAttributes = new { @class = "form-control-file", type = "file", name = "IsoCertificates", multiple = "multiple" } })
+                                    @Html.ValidationMessageFor(model => model.IsoCertificates, "", new { @class = "text-danger" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="mission col-md-12 col-sm-12 col-xs-12">
+                                    <h2>Our QHSE Mission</h2>
+                                    @Html.EditorFor(model => model.Mission, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Mission, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space"></div>
+                        <div class="row">
+                            <div id="exTab3" class="container">
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="#1b" data-toggle="tab">HSE</a>
+                                    </li>
+                                    <li>
+                                        <a href="#2b" data-toggle="tab">QHSE POLICY</a>
+                                    </li>
+                                    <li>
+                                        <a href="#3b" data-toggle="tab">سياسة الجودة والصحة و السلامة والبيئة</a>
+                                    </li>
+                                    <li>
+                                        <a href="#4b" data-toggle="tab">IMS</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content clearfix">
+                                    <div class="tab-pane active" id="1b">
+                                        @Html.EditorFor(model => model.Hse, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Hse, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="tab-pane" id="2b">
+                                        @Html.EditorFor(model => model.QhsePolicy, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.QhsePolicy, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="tab-pane" id="3b">
+                                        @Html.EditorFor(model => model.QhsePolicyAr, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.QhsePolicyAr, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="tab-pane" id="4b">
+                                        @Html.EditorFor(model => model.QhseIMS, new { htmlAttributes = new { @class = "form-control-file", type = "file", name = "Ims", id = "ImsFile" } })
+                                        @Html.ValidationMessageFor(model => model.QhseIMS, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div>
+                @Html.ActionLink("Back to Index", "Index")
+            </div>
+        </div>
+    </section>
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+                @Scripts.Render("~/bundles/tinymce")
+                <script type="text/javascript">
+                    tinymce.init({
+                        selector: 'textarea',
+                        plugins: "lists, media, spellchecker, image, code",
+                        toolbar: "numlist bullist media spellchecker image code"
+                    });
+                </script>
+            }

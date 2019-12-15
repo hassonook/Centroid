@@ -27,9 +27,11 @@ namespace Centroid.Models
         public string Employer { get; set; }
 
         [Required, Display(Name = "Start Date"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime StartDate { get; set; }
 
         [Required, Display(Name = "End Date"), DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime EndDate { get; set; }
 
         [Required, Display(Name = "Job Title"), DataType(DataType.Text)]

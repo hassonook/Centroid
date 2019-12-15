@@ -22,10 +22,10 @@ namespace Centroid
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
                 var user = new ApplicationUser();
-                user.UserName = "admin@centroid.com";
-                user.Email = "admin@centroid.com";
+                user.UserName = "websiteadmin@centroidtech.com";
+                user.Email = "websiteadmin@centroidtech.com";
 
-                string userPWD = "Pa$$w0rd";
+                string userPWD = "Cts@123";
 
                 var chkUser = UserManager.Create(user, userPWD);
 

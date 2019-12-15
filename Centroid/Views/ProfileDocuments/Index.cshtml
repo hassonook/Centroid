@@ -45,7 +45,11 @@
         <p>
             @Html.ActionLink("Back", "Index", "WorkExperiences", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-secondary" })
             @Html.ActionLink("Exit", "Job", "Careers", null, htmlAttributes: new { @class = "btn btn-danger" })
-            @Html.ActionLink("Continue", "Apply", "Careers", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
+            @if (ViewBag.JobId != null)
+            {
+                @Html.ActionLink("Continue", "Apply", "Careers", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
+            }
+            @Html.ActionLink("Continue", "Details", "Profiles", new { profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
         </p>
     </div>
 </section>

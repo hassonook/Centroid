@@ -5,58 +5,68 @@
 }
     <section class="section secPadding clearfix" data-animation-effect="fadeIn">
         <div class="container">
-            <div>
-                <h4><u>Personal Info:</u></h4>
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.FullName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.FullName)
-                    </dd>
+            <div class="Resume">
+                <h4><u>Personal Information:</u></h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.FullName)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.FullName)
+                            </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Gender)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Gender)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Gender)
+                            </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.DateOfBirth)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.DateOfBirth)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateOfBirth)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DateOfBirth)
+                            </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Nationality)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Nationality)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Nationality)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Nationality)
+                            </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Email)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Email)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Phone1)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Phone1)
-                    </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Phone1)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Phone1)
+                            </dd>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Phone2)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Phone2)
-                    </dd>
-                </dl>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Phone2)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Phone2)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-4">
+                        @if (Model.Documents.Where(d => d.DocType == "Photo").Count() != 0)
+                        {
+                            <img src="@Url.Content(Model.Documents.Where(d=>d.DocType == "Photo").FirstOrDefault().Document)" sizes="50px, 50px" />
+                        }
+                    </div>
+                </div>
                 <h4><u>Education:</u></h4>
                 <table class="table">
                     <tr>

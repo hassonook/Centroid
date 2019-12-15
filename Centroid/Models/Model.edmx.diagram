@@ -33,6 +33,7 @@
         <EntityTypeShape EntityType="Model.Service" Width="1.5" PointX="12.625" PointY="8" />
         <AssociationConnector Association="Model.ServiceServiceDetails" />
         <EntityTypeShape EntityType="Model.Career" Width="1.5" PointX="13" PointY="5.625" />
+        <EntityTypeShape EntityType="Model.KeyRecord" Width="1.5" PointX="13.125" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

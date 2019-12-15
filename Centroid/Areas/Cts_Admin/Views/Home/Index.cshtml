@@ -1,0 +1,124 @@
+﻿@model Centroid.Models.HomeViewModels
+<section class="section secPadding">
+    <div class="container">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Active
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.HomeImages)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img width="100" height="100" src="@Url.Content(Html.DisplayFor(modelItem => item.Image).ToString())" />
+                    </td>
+                    <td>
+                        @Html.Raw(Server.HtmlDecode(item.Description))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</section>
+<!-- banner end -->
+<section class="hero-caption secPadding">
+
+    <div class="container">
+
+        <div class="row flex home" style="margin-top: 0px;">
+            <div class="col-sm-8 home about">
+                @Html.Raw(Server.HtmlDecode(Model.About.Substring(Model.About.IndexOf("<p"))))
+            </div>
+            <div class="col-sm-4 home vision">
+                <h2>Our VISION</h2>
+                <div class="vision-text">
+                    @Html.Raw(Server.HtmlDecode(Model.Vision.Substring(Model.Vision.IndexOf("<p"))))
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- section start -->
+<section class="default-bg key-record">
+    <div class="container">
+        <div class="row">
+            <div class='col-md-offset-2 col-md-8 text-center'>
+                @if (Model.KeyRecords == null)
+                {
+                    @Html.ActionLink("Create New", "Create")
+                }
+                else
+                {
+                    @Html.ActionLink("Change Key Records", "Index", "KeyRecords")
+                }
+
+                <h2><strong>Our Key Records</strong></h2>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-offset-2 col-md-8'>
+                <div class="carousel slide" data-ride="carousel" id="key-carousel">
+                    <!-- Bottom Carousel Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#key-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#key-carousel" data-slide-to="1"></li>
+                        <li data-target="#key-carousel" data-slide-to="2"></li>
+                        <li data-target="#key-carousel" data-slide-to="3"></li>
+                    </ol>
+                    <!-- Carousel Slides / KeyRecords -->
+                    <div class="carousel-inner">
+                        @foreach (var item in Model.KeyRecords)
+                        {
+                            var className = "item";
+                            if (item == Model.KeyRecords[0])
+                            {
+                                className = "item active";
+                            }
+
+                            <div class="@className">
+                                <div class="row">
+
+                                    <div class="col-md-3 col-sm-3 col-xs-3 text-center">
+                                        <img class="img-circle" src="@Url.Content(item.RecordImage)" style="width: 100px;height:100px;">
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-xs-9 item-text">
+                                        @item.RecordText
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- section end -->

@@ -18,6 +18,7 @@ namespace Centroid.Models
         public string AboutUs { get; set; }
         public string Vision { get; set; }
         public string Mission { get; set; }
+        public string Values { get; set; }
         public string CoreBusiness { get; set; }
         public string Experience { get; set; }
         public string Expertise { get; set; }

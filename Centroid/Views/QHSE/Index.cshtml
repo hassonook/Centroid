@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-md-7">
-                <div class="mission col-md-12 col-sm-12 col-xs-12">
+                <div class="mission qhse col-md-12 col-sm-12 col-xs-12">
                     @{
 
                         var mission = Model.FirstOrDefault().Mission.Substring(Model.FirstOrDefault().Mission.IndexOf("<li"));
@@ -60,13 +60,13 @@
             <div id="exTab3" class="container">
                 <ul class="nav nav-pills">
                     <li class="active">
-                        <a href="#1b" data-toggle="tab">HSE</a>
+                        <a href="#1b" data-toggle="tab">QHSE POLICY</a>
                     </li>
                     <li>
-                        <a href="#2b" data-toggle="tab">QHSE POLICY</a>
+                        <a href="#2b" data-toggle="tab">سياسة الجودة والصحة و السلامة والبيئة</a>
                     </li>
                     <li>
-                        <a href="#3b" data-toggle="tab">سياسة الجودة والصحة و السلامة والبيئة</a>
+                        <a href="#3b" data-toggle="tab">HSE</a>
                     </li>
                     <li>
                         <a href="#4b" data-toggle="tab">IMS</a>
@@ -75,13 +75,13 @@
 
                 <div class="tab-content clearfix">
                     <div class="tab-pane active" id="1b">
-                        @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().Hse.Substring(Model.FirstOrDefault().Hse.IndexOf("<p"))))
-                    </div>
-                    <div class="tab-pane" id="2b">
                         @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().QhsePolicy.Substring(Model.FirstOrDefault().QhsePolicy.IndexOf("<p"))))
                     </div>
-                    <div class="tab-pane" id="3b">
+                    <div class="tab-pane" id="2b">
                         @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().QhsePolicyAr.Substring(Model.FirstOrDefault().QhsePolicyAr.IndexOf("<p"))))
+                    </div>
+                    <div class="tab-pane" id="3b">
+                        @Html.Raw(Server.HtmlDecode(Model.FirstOrDefault().Hse.Substring(Model.FirstOrDefault().Hse.IndexOf("<p"))))
                     </div>
                     <div class="tab-pane" id="4b">
                         <a href="@Url.Content(Model.FirstOrDefault().QhseIMS)">Integrated Management System</a>

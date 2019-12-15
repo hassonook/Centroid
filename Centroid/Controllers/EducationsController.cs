@@ -33,6 +33,10 @@ namespace Centroid.Controllers
         // GET: Educations
         public ActionResult Index(int? jobId, int? profileId)
         {
+            if (profileId == null)
+            {
+                return RedirectToAction("Login", "Profiles", null);
+            }
             var educations = db.Educations.Where(e => e.PersonalInfoId == profileId);
             if (educations.Count() == 0)
             {
@@ -46,6 +50,10 @@ namespace Centroid.Controllers
         // GET: Educations/Create
         public ActionResult Create(int? jobId, int? profileId)
         {
+            if (profileId == null)
+            {
+                return RedirectToAction("Login", "Profiles", null);
+            }
             ViewBag.EducationLevel = new SelectList(educationLevel, "Key", "Value");
             ViewBag.Country = new SelectList(CountryList, "Key", "Value");
             ViewBag.JobId = jobId;

@@ -1,118 +1,193 @@
 ﻿@model Centroid.Models.PersonalInfo
 <section class="section secPadding clearfix" data-animation-effect="fadeIn">
     <div class="container">
-        <div>
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.FullName)
-                </dd>
+        <div class="Resume">
+            <h4><u>Personal Information:</u></h4>
+            <div class="row">
+                <div class="col-md-8">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FullName)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Email)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Email)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Gender)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.DateOfBirth)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.DateOfBirth)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DateOfBirth)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.DateOfBirth)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Nationality)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Nationality)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Nationality)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Nationality)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Phone1)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Phone1)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Phone2)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Phone2)
-                </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone1)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone1)
+                        </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Gender)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Gender)
-                </dd>
-            </dl>
-        </div>
-        <table class="table">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().EducationalInstitution)</th>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().Country)</th>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().EducationLevel)</th>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().Discipline)</th>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().StartDate)</th>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().EndDate)</th>
-                <th>@Html.DisplayNameFor(model => model.Educations.FirstOrDefault().Highest)</th>
-            </tr>
-            <tr>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Phone2)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Phone2)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    @if (Model.Documents.Where(d => d.DocType == "Photo").Count() != 0)
+                    {
+                        <img src="@Url.Content(Model.Documents.Where(d=>d.DocType == "Photo").FirstOrDefault().Document)" sizes="50px, 50px" />
+                    }
+                </div>
+            </div>
+            <h4><u>Education:</u></h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().EducationalInstitution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().Discipline)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().EducationLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().Country)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().EndDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Educations.Single().Highest)
+                    </th>
+                </tr>
+
                 @foreach (var item in Model.Educations)
                 {
-                    <td>@item.EducationalInstitution</td>
-                    <td>@item.Country</td>
-                    <td>@item.EducationLevel</td>
-                    <td>@item.Discipline</td>
-                    <td>@item.StartDate</td>
-                    <td>@item.EndDate</td>
-                    <td>@item.Highest</td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EducationalInstitution)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discipline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EducationLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Highest)
+                        </td>
+                    </tr>
                 }
-            </tr>
-        </table>
+            </table>
+            <h4><u>Work Experiences:</u></h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().Employer)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().JobTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkExperiences.Single().EndDate)
+                    </th>
+                </tr>
 
-        <table class="table">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.WorkExperiences.FirstOrDefault().Employer)</th>
-                <th>@Html.DisplayNameFor(model => model.WorkExperiences.FirstOrDefault().JobTitle)</th>
-                <th>@Html.DisplayNameFor(model => model.WorkExperiences.FirstOrDefault().StartDate)</th>
-                <th>@Html.DisplayNameFor(model => model.WorkExperiences.FirstOrDefault().EndDate)</th>
-            </tr>
-            <tr>
                 @foreach (var item in Model.WorkExperiences)
                 {
-                    <td>@item.Employer</td>
-                    <td>@item.JobTitle</td>
-                    <td>@item.StartDate</td>
-                    <td>@item.EndDate</td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employer)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.JobTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                    </tr>
                 }
-            </tr>
-        </table>
 
-        <table class="table">
-            <tr>
-                <th>@Html.DisplayNameFor(model => model.Documents.FirstOrDefault().Name)</th>
-                <th>@Html.DisplayNameFor(model => model.Documents.FirstOrDefault().DocType)</th>
-                <th>@Html.DisplayNameFor(model => model.Documents.FirstOrDefault().Document)</th>
-            </tr>
-            <tr>
+            </table>
+            <h4><u>Attach Documents:</u></h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Documents.Single().Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Documents.Single().DocType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Documents.Single().Document)
+                    </th>
+                    <th></th>
+                </tr>
+
                 @foreach (var item in Model.Documents)
                 {
-                    <td>@item.Name</td>
-                    <td>@item.DocType</td>
-                    <td><a href="@Url.Content(item.Document)">Download/Preview</a></td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DocType)
+                        </td>
+                        <td>
+                            <span class="fa fa-file-archive-o"></span>
+                            <a href="@Url.Content(item.Document)">Preview</a>
+                        </td>
+                    </tr>
                 }
-            </tr>
-        </table>
+
+            </table>
+        </div>
         <p>
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Edit", "Create", new { profileId = Model.Id }) |
+            @Html.ActionLink("Close", "Index", "Careers")
         </p>
     </div>
 </section>

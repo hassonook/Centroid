@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Centroid.Models.About>
+    @{ 
+        var model = Model.FirstOrDefault();
+    }
+<section class="section clearfix secPadding aboutus" data-animation-effect="fadeIn">
+    <div class="container">
+        <p>
+            @if (model == null)
+            {
+                @Html.ActionLink("Create New", "Create")
+            }
+            else
+            {
+                @Html.ActionLink("Change About Us Info", "Edit", new { id = model.Id })
+            }
+        </p>
+        <!-- section start -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <h2><strong>About Our Company</strong></h2>
+                        @Html.Raw(Server.HtmlDecode(model.AboutUs))
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row flex about">
+                        <div class="col-md-4 about vision">
+                            <h2>Our VISION</h2>
+                            <div class="vision-text">
+                                @Html.Raw(Server.HtmlDecode(model.Vision.Substring(model.Vision.IndexOf("<p"))))
+                            </div>
+                        </div>
+                        <div class="col-md-4 about mission">
+                            <h2>Our MISSION</h2>
+                            <div class="vision-text">
+                                @Html.Raw(Server.HtmlDecode(model.Mission.Substring(model.Mission.IndexOf("<p"))))
+                            </div>
+                        </div>
+                        <div class="col-md-4 about values">
+                            <h2>Our VALUES</h2>
+                            <div class="vision-text">
+                                @Html.Raw(Server.HtmlDecode(model.Values.Substring(model.Values.IndexOf("<u"))))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- section start -->
+                <section class="default-bg rad-10">
+                    <div class="container about">
+                        <div class="row">
+                            <div class="col-sm-2 text-center">
+                                <img class="img-circle" src="~/Content/images/About/CoreBusiness.jpg" style="width: 155px;height:155px;">
+                            </div>
+                            <div class="col-sm-9 corbusiness">
+                                @Html.Raw(Server.HtmlDecode(model.CoreBusiness))
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- section end -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Our Experience</h2>
+                        @{
+                            var experience = model.Experience.Substring(model.Experience.IndexOf("<li"));
+                            experience = experience.Replace(";", "").Replace("</li>\r\n<li>", ";").Replace("<li>", "").Replace("</li>\r\n</ul>", "");
+                            var experienceList = experience.Split(';');
+                        }
+                        <ul class="list-unstyled">
+                            @foreach (var item in experienceList)
+                            {
+                                <li><i class="fa fa-arrow-circle-right pr-10 colored"></i>@item</li>
+                            }
+                        </ul>
+                        @*@Html.Raw(Server.HtmlDecode(Model.Experience))*@
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Our Expertise</h2>
+                        @{
+                            var expertise = model.Expertise.Substring(model.Expertise.IndexOf("<li"));
+                            expertise = expertise.Replace(";", "").Replace("</li>\r\n<li>", ";").Replace("<li>", "").Replace("</li>\r\n</ul>", "");
+                            var expertiseList = expertise.Split(';');
+                        }
+                        <ul class="list-unstyled">
+                            @foreach (var item in expertiseList)
+                            {
+                                <li><i class="fa fa-arrow-circle-right pr-10 colored"></i>@item</li>
+                            }
+                        </ul>
+                        @*@Html.Raw(Server.HtmlDecode(Model.Expertise))*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -20,6 +20,10 @@ namespace Centroid.Controllers
         // GET: ProfileDocuments
         public ActionResult Index(int? jobId, int? profileId)
         {
+            if (profileId == null)
+            {
+                return RedirectToAction("Login", "Profiles", null);
+            }
             var profileDocuments = db.ProfileDocuments.Where(d => d.ProfileId == profileId);
             var resume = profileDocuments.Where(d => d.DocType == "Resume");
             if (profileDocuments.Count() == 0 || resume.Count() == 0)
@@ -49,6 +53,10 @@ namespace Centroid.Controllers
         // GET: ProfileDocuments/Create
         public ActionResult Create(int? jobId, int? profileId)
         {
+            if (profileId == null)
+            {
+                return RedirectToAction("Login", "Profiles", null);
+            }
             ViewBag.JobId = jobId;
             ViewBag.ProfileId = profileId;
             ViewBag.DocType = new SelectList(docType, "Key", "Value");
@@ -90,7 +98,7 @@ namespace Centroid.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("File", "Please Upload Image .jpg/.jpeg, .pdf or Ms Word .doc/.docx file...");
+                        ModelState.AddModelError("", "Please Upload Image .jpg/.jpeg, .pdf or Ms Word .doc/.docx file...");
                         ViewBag.JobId = JobId;
                         ViewBag.ProfileId = ProfileId;
                         ViewBag.DocType = new SelectList(docType, "Key", "Value", profileDocument.DocType);
@@ -139,13 +147,14 @@ namespace Centroid.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Document,DocType,ProfileId")] ProfileDocument profileDocument, HttpPostedFileBase Document, int JobId, int ProfileId)
+        public ActionResult Edit([Bind(Include = "Id,Name,Document,DocType,ProfileId")] ProfileDocument profileDocument, HttpPostedFileBase Document, int? JobId, int ProfileId)
         {
             if (ModelState.IsValid)
             {
                 var model = db.ProfileDocuments.Find(profileDocument.Id);
                 model.Name = profileDocument.Name;
                 model.DocType = profileDocument.DocType;
+                string oldFileUrl = model.Document;
                 if (Document != null)
                 {
                     if (validDocTypes.Contains(Request.Files[0].ContentType))
@@ -159,7 +168,12 @@ namespace Centroid.Controllers
                             string _path = Path.Combine(Server.MapPath(_ProfileDocumetPath), _fileName);
                             string _fileUrl = Path.Combine(_ProfileDocumetPath, _fileName);
                             _file.SaveAs(_path);
-                            profileDocument.Document = _fileUrl;
+                            string oldFile = Server.MapPath(oldFileUrl);
+                            if (System.IO.File.Exists(oldFile))
+                            {
+                                System.IO.File.Delete(oldFile);
+                            }
+                            model.Document = _fileUrl;
                         }
                         else
                         {
@@ -172,7 +186,7 @@ namespace Centroid.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("File", "Please Upload Image .jpg/.jpeg, .pdf or Ms Word .doc/.docx file...");
+                        ModelState.AddModelError("", "Please Upload Image .jpg/.jpeg, .pdf or Ms Word .doc/.docx file...");
                         ViewBag.JobId = JobId;
                         ViewBag.ProfileId = ProfileId;
                         ViewBag.DocType = new SelectList(docType, "Key", "Value", profileDocument.DocType);
@@ -209,11 +223,16 @@ namespace Centroid.Controllers
         // POST: ProfileDocuments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, int JobId, int ProfileId)
+        public ActionResult DeleteConfirmed(int id, int? JobId, int ProfileId)
         {
             ProfileDocument profileDocument = db.ProfileDocuments.Find(id);
+            string fileUrl = Server.MapPath(profileDocument.Document);
             db.ProfileDocuments.Remove(profileDocument);
             db.SaveChanges();
+            if (System.IO.File.Exists(fileUrl))
+            {
+                System.IO.File.Delete(fileUrl);
+            }
             return RedirectToAction("Index", new { jobId = JobId, profileId = ProfileId });
         }
 

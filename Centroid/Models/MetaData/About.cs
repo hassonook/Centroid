@@ -43,6 +43,12 @@ namespace Centroid.Models
 
         [Required]
         [AllowHtml]
+        [Display(Name = "Values")]
+        [DataType(DataType.MultilineText)]
+        public string Values { get; set; }
+
+        [Required]
+        [AllowHtml]
         [Display(Name = "Core Business")]
         [DataType(DataType.MultilineText)]
         public string CoreBusiness { get; set; }

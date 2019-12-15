@@ -11,9 +11,16 @@ namespace Centroid.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            ViewBag.AboutUs = db.Abouts.Select(a => a.AboutUs).FirstOrDefault();
-            ViewBag.Vision = db.Abouts.Select(a => a.Vision).FirstOrDefault();
-            return View(db.Homes.Where(x=>x.Active).ToList());
+            HomeViewModels model = new HomeViewModels();
+            var homeImages = db.Homes.Where(h => h.Active == true).ToList();
+            var about = db.Abouts.Select(a => a.AboutUs).FirstOrDefault();
+            var vision = db.Abouts.Select(a => a.Vision).FirstOrDefault();
+            var keyRecords = db.KeyRecords.ToList();
+            model.HomeImages = homeImages;
+            model.About = about;
+            model.Vision = vision;
+            model.KeyRecords = keyRecords;
+            return View(model);
         }
     }
 }

@@ -56,6 +56,8 @@ namespace Centroid.Models
 
         public System.Data.Entity.DbSet<Centroid.Models.ContactUs> ContactUs { get; set; }
         public System.Data.Entity.DbSet<Centroid.Models.Career> Careers { get; set; }
+        public System.Data.Entity.DbSet<Centroid.Models.KeyRecord> KeyRecords { get; set; }
+
 
     }
 }

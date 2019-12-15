@@ -18,7 +18,7 @@
                     <ul class="nav nav-pills">
                         <li class="active"><a href="#" data-filter="*">All</a></li>
                         <li><a href="#" data-filter=".Active">Active</a></li>
-                        <li><a href="#" data-filter=".Close">Close</a></li>
+                        <li><a href="#" data-filter=".Close">Closed</a></li>
                     </ul>
                 </div>
                 <!-- isotope filters end -->
@@ -26,14 +26,19 @@
                 <div class="isotope-container row grid-space-20">
                     @foreach (var item in Model)
                     {
-                        if (item.EndDate > System.DateTime.Now)
+                        if (item.EndDate < System.DateTime.Now)
                         {
                             status = "Close";
                         }
+                        else
+                        {
+                            status = "Active";
+                        }
+
                         <div class="col-sm-6 col-md-3 isotope-item @status">
                             <div class="image-box">
                                 <div class="overlay-container">
-                                    <img src="@Url.Content(item.Image)"/>
+                                    <img src="@Url.Content(item.ClientLogo)"  style="width:250px; height:250px"/>
                                     <a class="overlay" data-toggle="modal" data-target="#@item.Id">
                                         <i class="fa fa-search-plus"></i>
 

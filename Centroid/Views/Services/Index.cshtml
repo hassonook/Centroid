@@ -1,40 +1,55 @@
 ﻿@model IEnumerable<Centroid.Models.Service>
-@{
+    @{ 
     var item = Model.FirstOrDefault();
 }
-
-<!-- section start -->
-<section class="section transprant-bg pclear secPadding">
-    <div class="container no-view" data-animation-effect="fadeIn">
-        <h1 id="services" class="title text-center">Our Services</h1>
-        <div class="row">
-            <div class="col-md-12">
-                @Html.Raw(Server.HtmlDecode(item.ServiceHead))
+@section styles {
+    <style>
+        .service-chart{
+            display:flex;
+        }
+        .main-border{
+            border: solid 3px #349051;
+            height: 300px;
+            width: 400px;
+            align-content: center;
+            flex: 1;
+            margin: 0 150px;
+            border-radius: 80%;
+        }
+    </style>
+}
+    <!-- section start -->
+    <section class="section transprant-bg secPadding">
+        <div class="container" data-animation-effect="fadeIn">
+            <h1 id="services" class="title text-center">Our Services</h1>
+            <div class="row">
+                <div class="col-md-12 service">
+                    @Html.Raw(Server.HtmlDecode(item.ServiceHead))
+                </div>
             </div>
-        </div>
-        <div class="space"></div>
-        <div class="row">
-            @foreach (var service in item.ServiceDetails)
-            {
-                <div class="col-md-4">
-                    <div class="media block-list">
-                        <div class="media-left">
-                            <img width="50" height="50" src="@Url.Content(service.Image)"/>
-                        </div>
-                        <div class="media-body">
-                            @Html.Raw(Server.HtmlDecode(service.Description))
+            <div class="space"></div>
+            <div class="row">
+                @foreach (var service in item.ServiceDetails)
+                {
+                    <div class="col-md-4">
+                        <div class="media block-list">
+                            <div class="media-left">
+                                <img width="50" height="50" src="@Url.Content(service.Image)" />
+                            </div>
+                            <div class="media-body">
+                                @Html.Raw(Server.HtmlDecode(service.Description))
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            }
-        </div>
-        <div class="space"></div>
-        <div class="row">
-            <div class="col-md-12">
-                @Html.Raw(Server.HtmlDecode(item.ServiceFoot))
+                }
+            </div>
+            <div class="space"></div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.Raw(Server.HtmlDecode(item.ServiceFoot))
+                </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- section end -->
+    </section>
+    <!-- section end -->

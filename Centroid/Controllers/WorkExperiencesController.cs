@@ -17,6 +17,10 @@ namespace Centroid.Controllers
         // GET: WorkExperiences
         public ActionResult Index(int? jobId, int? profileId)
         {
+            if (profileId == null)
+            {
+                return RedirectToAction("Login", "Profiles", null);
+            }
             var experiences = db.WorkExperiences.Where(e => e.PersonalInfoId == profileId);
             ViewBag.JobId = jobId;
             ViewBag.ProfileId = profileId;
@@ -41,6 +45,10 @@ namespace Centroid.Controllers
         // GET: WorkExperiences/Create
         public ActionResult Create(int? jobId, int? profileId)
         {
+            if (profileId == null)
+            {
+                return RedirectToAction("Login", "Profiles", null);
+            }
             ViewBag.JobId = jobId;
             ViewBag.ProfileId = profileId;
             return View();

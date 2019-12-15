@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Centroid.Models.Job>
+@section Styles
+{
+    <!-- Datatables CSS-->
+    @Styles.Render("~/Content/datatables")
+}
+<section class="section secPadding clearfix" data-animation-effect="fadeIn">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul class="side-menu">
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Careers")">Home</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Jobs")">Vacancies</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "Profiles")">Profiles</a></li>
+                            <li class="side-menu-item"><a href="@Url.Action("Index", "JobApplications")">Applications</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9">
+                        <p>
+                            @Html.ActionLink("Create New", "Create")
+                        </p>
+                        <table id="jobs" class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.JobTitle)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.JobType)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.JobTitle)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.JobType)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+        $(document).ready(function () {
+            $('#jobs').dataTable({
+                responsive: true,
+                dom: "<'row'<'col-sm-12 col-md-6'B><'col-sm-12 col-md-6'f>>rtip",
+                lengthMenu: [[10, 25, 50, -1], ['10 rows', '25 rows', '50 rows', 'Show all']],
+                "buttons": ['pageLength', 'copy', 'pdf', 'excel', { extend: 'print', exportOptions: { columns: ':visible' } }],
+            });
+        });
+    </script>
+}

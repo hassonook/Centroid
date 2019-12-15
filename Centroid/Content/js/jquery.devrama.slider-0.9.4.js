@@ -95,8 +95,6 @@
 	DrSlider.prototype = {
 		_init: function(){
 			var that = this;
-			
-			
 			this._stopTimer(function(){
 				that._prepare(function(){
 					if(typeof that.options.onReady == 'function') that.options.onReady(); 

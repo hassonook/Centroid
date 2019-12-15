@@ -6,67 +6,43 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    
+
                     <div class="col-md-12">
-                        <h2><strong>About Our Company</strong></h2>
+                        <h2><strong>Centroid at Glance</strong></h2>
                         @Html.Raw(Server.HtmlDecode(Model.AboutUs))
                     </div>
                 </div>
+                <div class="container">
+            <div class="row flex about">
+                <div class="col-md-4 about vision">
+                    <h2>Our VISION</h2>
+                    <div class="vision-text">
+                        @Html.Raw(Server.HtmlDecode(Model.Vision.Substring(Model.Vision.IndexOf("<p"))))
+                    </div>
+                </div>
+                <div class="col-md-4 about mission">
+                    <h2>Our MISSION</h2>
+                    <div class="vision-text">
+                        @Html.Raw(Server.HtmlDecode(Model.Mission.Substring(Model.Mission.IndexOf("<p"))))
+                    </div>
+                </div>
+                <div class="col-md-4 about values">
+                    <h2>Our VALUES</h2>
+                    <div class="vision-text">
+                        @Html.Raw(Server.HtmlDecode(Model.Values.Substring(Model.Values.IndexOf("<u"))))
+                    </div>
+                </div>
+            </div>
+        </div>
                 <!-- section start -->
                 <section class="default-bg rad-10">
-                    <div class="container">
-                        <div class='row'>
-                            <div class='col-md-12'>
-                                <div class="carousel slide" data-ride="carousel" id="quote-carousel">
-                                    <!-- Bottom Carousel Indicators -->
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#quote-carousel" data-slide-to="1"></li>
-                                        <li data-target="#quote-carousel" data-slide-to="2"></li>
-                                    </ol>
-                                    <!-- Carousel Slides / Quotes -->
-                                    <div class="carousel-inner about">
-                                        <!-- Quote 1 -->
-                                        <div class="item active">
-                                            <blockquote>
-                                                <div class="row">
-                                                    <div class="col-sm-2 text-center">
-                                                        <img class="img-circle" src="~/Content/images/About/vision.jpg" style="width: 155px;height:155px;">
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        @Html.Raw(Server.HtmlDecode(Model.Vision))
-                                                    </div>
-                                                </div>
-                                            </blockquote>
-                                        </div>
-                                        <!-- Quote 2 -->
-                                        <div class="item">
-                                            <blockquote>
-                                                <div class="row">
-                                                    <div class="col-sm-2 text-center">
-                                                        <img class="img-circle" src="~/Content/images/About/mission.jpg" style="width: 155px;height:155px;">
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        @Html.Raw(Server.HtmlDecode(Model.Mission))
-                                                    </div>
-                                                </div>
-                                            </blockquote>
-                                        </div>
-                                        <!-- Quote 3 -->
-                                        <div class="item">
-                                            <blockquote>
-                                                <div class="row">
-                                                    <div class="col-sm-2 text-center">
-                                                        <img class="img-circle" src="~/Content/images/About/CoreBusiness.jpg" style="width: 155px;height:155px;">
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        @Html.Raw(Server.HtmlDecode(Model.CoreBusiness))
-                                                    </div>
-                                                </div>
-                                            </blockquote>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="container about">
+                        <div class="row">
+                            <div class="col-sm-2 text-center">
+                                <img class="img-circle" src="~/Content/images/About/CoreBusiness.jpg" style="width: 155px;height:155px;">
+                            </div>
+                            <div class="col-sm-9 corbusiness">
+                                @Html.Raw(Server.HtmlDecode(Model.CoreBusiness))
                             </div>
                         </div>
                     </div>

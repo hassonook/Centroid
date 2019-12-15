@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/22/2019 13:08:42
+-- Date Created: 11/06/2019 13:13:22
 -- Generated from EDMX file: D:\Projects\Centroid\Centroid\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -103,6 +103,12 @@ GO
 IF OBJECT_ID(N'[dbo].[Services]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Services];
 GO
+IF OBJECT_ID(N'[dbo].[Careers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Careers];
+GO
+IF OBJECT_ID(N'[dbo].[KeyRecords]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[KeyRecords];
+GO
 IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserRoles];
 GO
@@ -127,6 +133,7 @@ CREATE TABLE [dbo].[Abouts] (
     [AboutUs] nvarchar(max)  NOT NULL,
     [Vision] nvarchar(max)  NOT NULL,
     [Mission] nvarchar(max)  NOT NULL,
+    [Values] nvarchar(max)  NOT NULL,
     [CoreBusiness] nvarchar(max)  NOT NULL,
     [Experience] nvarchar(max)  NOT NULL,
     [Expertise] nvarchar(max)  NOT NULL
@@ -307,6 +314,14 @@ CREATE TABLE [dbo].[Careers] (
 );
 GO
 
+-- Creating table 'KeyRecords'
+CREATE TABLE [dbo].[KeyRecords] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [RecordText] nvarchar(max)  NOT NULL,
+    [RecordImage] nvarchar(max)  NOT NULL
+);
+GO
+
 -- Creating table 'AspNetUserRoles'
 CREATE TABLE [dbo].[AspNetUserRoles] (
     [RoleId] nvarchar(128)  NOT NULL,
@@ -426,6 +441,12 @@ ADD CONSTRAINT [PK_Careers]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'KeyRecords'
+ALTER TABLE [dbo].[KeyRecords]
+ADD CONSTRAINT [PK_KeyRecords]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [RoleId], [UserId] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [PK_AspNetUserRoles]
@@ -520,7 +541,7 @@ ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRole]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [AspNetUsers_Id] in table 'AspNetUserRoles'
+-- Creating foreign key on [UserId] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUser]
     FOREIGN KEY ([UserId])
