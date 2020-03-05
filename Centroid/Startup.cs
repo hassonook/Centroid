@@ -28,7 +28,6 @@ namespace Centroid
                 string userPWD = "Cts@123";
 
                 var chkUser = UserManager.Create(user, userPWD);
-
         }
     }
 }

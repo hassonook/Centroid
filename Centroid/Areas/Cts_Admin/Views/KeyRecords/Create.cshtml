@@ -40,6 +40,12 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/tinymce")
     <script type="text/javascript">
-            tinymce.init({ selector: 'textarea', width: 500 });
+        tinymce.init({
+            selector: 'textarea',
+            width: 500,
+            plugins: "lists, media, spellchecker, image, code",
+            toolbar: "numlist bullist media spellchecker image code",
+            base_url: '/Scripts/tinymce'
+        });
     </script>
 }

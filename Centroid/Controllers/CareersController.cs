@@ -14,17 +14,13 @@ namespace Centroid.Controllers
         public ActionResult Index()
         {
             var careers = db.Careers.Where(c => c.Active == true).FirstOrDefault();
-            //CareerViewModels careerViewModel = new CareerViewModels();
-            //careerViewModel.CareerText = "Some Text For Careers Index Page";
-            //careerViewModel.Jobs = db.Jobs.ToList();
-            //careerViewModel.CareerMenu = System.Configuration.ConfigurationManager.AppSettings["JobType"].Split(',').ToList();
             return View(careers);
         }
 
         //GET: Careers
         public ActionResult Job()
         {
-            var jobs = db.Jobs.ToList();
+            var jobs = db.Jobs.Where(j => j.Active == true).ToList();
             return View(jobs);
         }
 

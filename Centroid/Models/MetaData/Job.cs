@@ -34,6 +34,9 @@ namespace Centroid.Models
         [Required]
         [Display(Name = "Job Type")]
         public string JobType { get; set; }
+        [Display(Name = "Active")]
+        public bool Active { get; set; }
+
 
     }
 }

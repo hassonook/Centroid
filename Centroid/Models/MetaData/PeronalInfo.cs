@@ -29,7 +29,7 @@ namespace Centroid.Models
         public string Email { get; set; }
         [Required]
         [Display(Name = "Password")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]

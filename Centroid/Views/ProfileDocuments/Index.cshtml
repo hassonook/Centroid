@@ -49,7 +49,10 @@
             {
                 @Html.ActionLink("Continue", "Apply", "Careers", new { jobId = ViewBag.JobId, profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
             }
-            @Html.ActionLink("Continue", "Details", "Profiles", new { profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
+            else
+            {
+                @Html.ActionLink("Continue", "Details", "Profiles", new { profileId = ViewBag.ProfileId }, htmlAttributes: new { @class = "btn btn-primary" })
+            }
         </p>
     </div>
 </section>

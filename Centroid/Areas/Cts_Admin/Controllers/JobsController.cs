@@ -63,7 +63,7 @@ namespace Centroid.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,JobTitle,JobDetails,JobType")] Job job)
+        public ActionResult Create([Bind(Include = "Id,JobTitle,JobDetails,JobType,Active")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace Centroid.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,JobTitle,JobDetails,JobType")] Job job)
+        public ActionResult Edit([Bind(Include = "Id,JobTitle,JobDetails,JobType,Active")] Job job)
         {
             if (ModelState.IsValid)
             {
@@ -129,7 +129,8 @@ namespace Centroid.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Job job = db.Jobs.Find(id);
-            db.Jobs.Remove(job);
+            job.Active = false;
+            db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

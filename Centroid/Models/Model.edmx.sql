@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/06/2019 13:13:22
+-- Date Created: 01/21/2020 13:57:01
 -- Generated from EDMX file: D:\Projects\Centroid\Centroid\Models\Model.edmx
 -- --------------------------------------------------
 
@@ -194,7 +194,8 @@ CREATE TABLE [dbo].[Jobs] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [JobTitle] nvarchar(max)  NOT NULL,
     [JobDetails] nvarchar(max)  NOT NULL,
-    [JobType] nvarchar(max)  NOT NULL
+    [JobType] nvarchar(max)  NOT NULL,
+    [Active] bit  NOT NULL
 );
 GO
 
@@ -324,8 +325,8 @@ GO
 
 -- Creating table 'AspNetUserRoles'
 CREATE TABLE [dbo].[AspNetUserRoles] (
-    [RoleId] nvarchar(128)  NOT NULL,
-    [UserId] nvarchar(128)  NOT NULL
+    [AspNetRoles_Id] nvarchar(128)  NOT NULL,
+    [AspNetUsers_Id] nvarchar(128)  NOT NULL
 );
 GO
 
@@ -447,10 +448,10 @@ ADD CONSTRAINT [PK_KeyRecords]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [RoleId], [UserId] in table 'AspNetUserRoles'
+-- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [PK_AspNetUserRoles]
-    PRIMARY KEY CLUSTERED ([RoleId], [UserId] ASC);
+    PRIMARY KEY CLUSTERED ([AspNetRoles_Id], [AspNetUsers_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -532,19 +533,19 @@ ON [dbo].[AspNetUserLogins]
     ([UserId]);
 GO
 
--- Creating foreign key on [RoleId] in table 'AspNetUserRoles'
+-- Creating foreign key on [AspNetRoles_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRole]
-    FOREIGN KEY ([RoleId])
+    FOREIGN KEY ([AspNetRoles_Id])
     REFERENCES [dbo].[AspNetRoles]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [UserId] in table 'AspNetUserRoles'
+-- Creating foreign key on [AspNetUsers_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUser]
-    FOREIGN KEY ([UserId])
+    FOREIGN KEY ([AspNetUsers_Id])
     REFERENCES [dbo].[AspNetUsers]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -553,7 +554,7 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUser'
 CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUser]
 ON [dbo].[AspNetUserRoles]
-    ([UserId]);
+    ([AspNetUsers_Id]);
 GO
 
 -- Creating foreign key on [PersonalInfoId] in table 'WorkExperiences'

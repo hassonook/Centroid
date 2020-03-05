@@ -147,6 +147,7 @@
     <Property Name="JobTitle" Type="nvarchar(max)" Nullable="false" />
     <Property Name="JobDetails" Type="nvarchar(max)" Nullable="false" />
     <Property Name="JobType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProfileDocuments">
     <Key>
@@ -553,6 +554,7 @@
           <Property Name="JobDetails" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="JobApplications" Relationship="Model.JobApplicationJob" FromRole="Job" ToRole="JobApplication" />
           <Property Name="JobType" Type="String" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ProfileDocument">
           <Key>
@@ -887,6 +889,7 @@
           <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
           <ScalarProperty Name="JobDetails" ColumnName="JobDetails" />
           <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

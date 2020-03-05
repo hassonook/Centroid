@@ -41,7 +41,15 @@ namespace Centroid.Controllers
         {
             if (jobId != null)
             {
-                ViewBag.JobId = jobId;
+                var jobStatus = db.Jobs.Find(jobId).Active;
+                if (jobStatus)
+                {
+                    ViewBag.JobId = jobId;
+                }
+                else
+                {
+                    ViewBag.JobId = null;
+                }
             }
             return View();
         }
